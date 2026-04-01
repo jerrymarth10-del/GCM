@@ -1,597 +1,1159 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JR Apostilas | IDECAN 2026</title>
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(rgba(10,18,34,.80),rgba(10,18,34,.88)),
-  url('https://images.unsplash.com/photo-1517260911205-8fcfd1749b74?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
-  color:#fff;
-}
-.hidden{display:none!important}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JR Apostilas | Plataforma Premium SESAU</title>
+  <meta name="description" content="Plataforma JR Apostilas com login visual, videoaulas e PDFs para concursos da área da saúde." />
+  <style>
+    :root{
+      --bg:#07141a;
+      --bg2:#0b2028;
+      --card:rgba(10,28,37,.88);
+      --card2:#10232d;
+      --line:rgba(255,255,255,.08);
+      --text:#f4fbfd;
+      --muted:#b8d0d8;
+      --green:#22c55e;
+      --green2:#16a34a;
+      --blue:#38bdf8;
+      --blue2:#0ea5e9;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:16px;
+      --max:1280px;
+    }
 
-#loginPage{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-}
-.login-box{
-  width:100%;
-  max-width:430px;
-  background:rgba(255,255,255,.95);
-  color:#0f172a;
-  border-radius:28px;
-  padding:32px;
-  box-shadow:0 20px 60px rgba(0,0,0,.28);
-}
-.brand{
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:999px;
-  background:#eef4ff;
-  color:#2563eb;
-  font-weight:700;
-  font-size:14px;
-}
-.login-box h1{
-  margin:14px 0 10px;
-  font-size:46px;
-  line-height:1;
-}
-.login-box p{
-  color:#64748b;
-  line-height:1.6;
-  margin:0 0 18px;
-}
-.label{
-  display:block;
-  margin:12px 0 8px;
-  font-size:14px;
-  font-weight:700;
-  color:#334155;
-}
-.input{
-  width:100%;
-  padding:14px 16px;
-  border-radius:14px;
-  border:1px solid #cbd5e1;
-  outline:none;
-  font-size:15px;
-}
-.input:focus{
-  border-color:#60a5fa;
-  box-shadow:0 0 0 4px rgba(59,130,246,.15);
-}
-.btn{
-  width:100%;
-  margin-top:16px;
-  padding:14px 16px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(180deg,#4b82e0,#2f67c9);
-  color:#fff;
-  font-weight:700;
-  font-size:16px;
-  cursor:pointer;
-}
-.error{
-  min-height:18px;
-  margin-top:12px;
-  color:#dc2626;
-  font-size:13px;
-}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.16), transparent 22%),
+        radial-gradient(circle at top right, rgba(34,197,94,.14), transparent 22%),
+        linear-gradient(180deg, #041015 0%, #07141a 45%, #08171d 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
 
-#app{
-  display:none;
-  min-height:100vh;
-  grid-template-columns:300px 1fr;
-}
-.sidebar{
-  background:rgba(8,15,28,.88);
-  border-right:1px solid rgba(255,255,255,.08);
-  padding:22px;
-  position:sticky;
-  top:0;
-  height:100vh;
-}
-.logo-card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:24px;
-  padding:20px;
-  margin-bottom:18px;
-}
-.logo-card small{
-  display:block;
-  color:#cbd5e1;
-  margin-bottom:8px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:11px;
-}
-.logo-card h2{
-  margin:0;
-  color:#facc15;
-  font-size:32px;
-}
-.logo-card p{
-  margin:8px 0 0;
-  color:#cbd5e1;
-  font-size:13px;
-  line-height:1.5;
-}
-.nav-btn{
-  width:100%;
-  text-align:left;
-  padding:14px 16px;
-  margin-top:10px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.05);
-  color:#fff;
-  cursor:pointer;
-  font-weight:700;
-}
-.nav-btn.active,.nav-btn:hover{
-  background:linear-gradient(180deg,rgba(59,130,246,.35),rgba(37,99,235,.35));
-  border-color:rgba(147,197,253,.35);
-}
-.logout-btn{
-  width:100%;
-  margin-top:18px;
-  padding:14px 16px;
-  border:none;
-  border-radius:16px;
-  background:linear-gradient(180deg,#fde68a,#facc15);
-  color:#3a2a00;
-  font-weight:700;
-  cursor:pointer;
-}
-.main{padding:24px}
-.top h1{
-  margin:0 0 8px;
-  font-size:30px;
-}
-.top p{
-  margin:0 0 20px;
-  color:#cbd5e1;
-}
-.page{display:none}
-.page.active{display:block}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.35), transparent 85%);
+      z-index:0;
+    }
 
-.hero,.player,.video-card,.pdf-card,.note-box{
-  background:rgba(255,255,255,.96);
-  color:#0f172a;
-  border-radius:22px;
-  box-shadow:0 14px 40px rgba(0,0,0,.18);
-}
-.hero{
-  padding:28px;
-  margin-bottom:18px;
-}
-.hero h2{
-  margin:0 0 12px;
-  font-size:42px;
-  line-height:1.05;
-}
-.hero p{
-  margin:0;
-  color:#475569;
-  line-height:1.7;
-}
-.section-title{
-  margin:20px 0 14px;
-  font-size:28px;
-  color:#fff;
-}
-.player{
-  overflow:hidden;
-  margin-bottom:18px;
-}
-.player-head{
-  padding:14px 18px;
-  border-bottom:1px solid #e2e8f0;
-  background:#f8fafc;
-}
-.player-head strong{
-  display:block;
-  font-size:18px;
-}
-.player-head span{
-  display:block;
-  margin-top:4px;
-  color:#64748b;
-  font-size:13px;
-}
-.player-frame{
-  position:relative;
-  width:100%;
-  padding-top:56.25%;
-  background:#000;
-}
-.player-frame iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:none;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
-}
-.video-card{
-  padding:18px;
-}
-.video-card h3{
-  margin:0 0 8px;
-  font-size:18px;
-  line-height:1.4;
-}
-.video-card p{
-  margin:0 0 14px;
-  color:#64748b;
-  line-height:1.6;
-  min-height:48px;
-}
-.small-btn{
-  display:inline-block;
-  padding:12px 14px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(180deg,#4b82e0,#2f67c9);
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-}
-.pdf-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-  margin-top:18px;
-}
-.pdf-card{
-  padding:20px;
-}
-.pdf-card h3{
-  margin:0 0 10px;
-  font-size:20px;
-}
-.pdf-card p{
-  margin:0 0 14px;
-  color:#64748b;
-  line-height:1.6;
-}
-.note-box{
-  padding:18px;
-  margin-top:18px;
-}
-.note-box strong{
-  display:block;
-  margin-bottom:8px;
-}
-.note-box p{
-  margin:0;
-  color:#64748b;
-  line-height:1.7;
-}
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.72);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:9999;
-  backdrop-filter:blur(6px);
-}
-.modal.open{display:flex}
-.modal-box{
-  width:min(1180px,96vw);
-  height:min(88vh,900px);
-  background:#fff;
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 20px 60px rgba(0,0,0,.28);
-  display:grid;
-  grid-template-rows:auto 1fr;
-}
-.modal-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 18px;
-  background:#f8fafc;
-  border-bottom:1px solid #e2e8f0;
-  color:#0f172a;
-}
-.modal-top h3{
-  margin:0;
-  font-size:18px;
-}
-.close-btn{
-  border:none;
-  border-radius:12px;
-  padding:10px 14px;
-  background:linear-gradient(180deg,#fde68a,#facc15);
-  color:#3a2a00;
-  font-weight:700;
-  cursor:pointer;
-}
-.modal iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  background:#fff;
-}
-@media (max-width:980px){
-  #app{grid-template-columns:1fr}
-  .sidebar{position:relative;height:auto}
-  .grid,.pdf-grid{grid-template-columns:1fr}
-  .hero h2{font-size:34px}
-}
-</style>
+    a{text-decoration:none;color:inherit}
+    .hidden{display:none !important}
+
+    .container{
+      width:min(calc(100% - 28px), var(--max));
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-badge{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--green), var(--blue));
+      color:#fff;
+      font-weight:800;
+      font-size:22px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 12px 30px rgba(34,197,94,.24);
+      flex-shrink:0;
+    }
+
+    .brand-text small{
+      display:block;
+      color:#9debc2;
+      font-size:12px;
+      letter-spacing:1.4px;
+      text-transform:uppercase;
+      font-weight:700;
+      margin-bottom:3px;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:24px;
+      letter-spacing:-.4px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:800;
+      transition:.2s ease;
+      font-size:16px;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--green), var(--green2));
+      color:#fff;
+      box-shadow:0 14px 30px rgba(22,163,74,.28);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.03);
+    }
+
+    .btn-outline{
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .btn-outline:hover{
+      background:rgba(255,255,255,.09);
+    }
+
+    .login-page{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .topbar{
+      padding:18px 0;
+    }
+
+    .login-hero{
+      flex:1;
+      display:grid;
+      place-items:center;
+      padding:12px 0 40px;
+    }
+
+    .login-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .hero-card{
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-left{
+      min-height:620px;
+      background:
+        linear-gradient(100deg, rgba(4,12,16,.9) 0%, rgba(5,16,21,.82) 45%, rgba(8,24,31,.68) 100%),
+        url('https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=80') center/cover;
+      position:relative;
+    }
+
+    .hero-content{
+      padding:46px;
+      max-width:720px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:#d9fff0;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .hero-content h1{
+      font-size:56px;
+      line-height:.98;
+      letter-spacing:-1.6px;
+      margin-bottom:18px;
+      max-width:720px;
+    }
+
+    .hero-content p{
+      color:#d4e7ec;
+      font-size:18px;
+      max-width:640px;
+      margin-bottom:26px;
+    }
+
+    .hero-points{
+      display:grid;
+      gap:14px;
+      margin-top:24px;
+      max-width:520px;
+    }
+
+    .hero-point{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .hero-point strong{font-size:15px}
+    .hero-point span{
+      color:#a7f3d0;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .login-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .login-card h2{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    .login-card p{
+      color:var(--muted);
+      margin-bottom:22px;
+      font-size:15px;
+    }
+
+    .form{
+      display:grid;
+      gap:16px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field label{
+      font-size:14px;
+      font-weight:700;
+      color:#d7f2f8;
+    }
+
+    .field input{
+      width:100%;
+      height:54px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      padding:0 16px;
+      font-size:15px;
+      outline:none;
+    }
+
+    .field input::placeholder{color:#aebcc8}
+    .field input:focus{
+      border-color:rgba(56,189,248,.45);
+      box-shadow:0 0 0 4px rgba(56,189,248,.10);
+    }
+
+    .error{
+      display:none;
+      margin-top:4px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(239,68,68,.12);
+      border:1px solid rgba(239,68,68,.24);
+      color:#fecaca;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .mini-box{
+      margin-top:22px;
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .mini-box strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:15px;
+    }
+
+    .mini-box span{
+      color:#b8d0d8;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .login-note{
+      margin-top:16px;
+      font-size:13px;
+      color:#9bb4bc;
+      line-height:1.5;
+    }
+
+    .platform-page{min-height:100vh}
+
+    .platform-topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(12px);
+      background:rgba(5,10,20,.70);
+      border-bottom:1px solid var(--line);
+    }
+
+    .platform-topbar-inner{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .menu{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .menu a{
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .menu a:hover{color:#fff}
+
+    .platform-hero{
+      padding:52px 0 24px;
+    }
+
+    .hero-platform{
+      border:1px solid var(--line);
+      border-radius:30px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(90deg, rgba(5,10,20,.88) 0%, rgba(5,10,20,.74) 45%, rgba(5,10,20,.45) 100%),
+        url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80') center/cover;
+    }
+
+    .hero-platform-content{
+      position:relative;
+      z-index:1;
+      padding:42px;
+      max-width:760px;
+    }
+
+    .hero-platform-content h1{
+      font-size:46px;
+      line-height:1.02;
+      letter-spacing:-1px;
+      margin-bottom:16px;
+    }
+
+    .hero-platform-content p{
+      color:#dbe3f2;
+      font-size:18px;
+      max-width:620px;
+    }
+
+    .welcome{
+      margin-top:18px;
+      color:#a7f3d0;
+      font-size:14px;
+      font-weight:800;
+    }
+
+    section{padding:26px 0}
+
+    .section-head{
+      margin-bottom:22px;
+    }
+
+    .section-head small{
+      display:block;
+      color:#86efac;
+      font-weight:800;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      font-size:12px;
+    }
+
+    .section-head h2{
+      font-size:38px;
+      line-height:1.05;
+      margin-bottom:10px;
+      letter-spacing:-1px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      max-width:780px;
+      font-size:16px;
+    }
+
+    .modules{
+      display:grid;
+      gap:24px;
+      margin-top:6px;
+    }
+
+    .module{
+      overflow:hidden;
+      border-radius:28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.03)),
+        rgba(8, 24, 32, 0.92);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .module-top{
+      padding:26px 28px 18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .module-left{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+    }
+
+    .module-icon{
+      width:62px;
+      height:62px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:26px;
+      background:linear-gradient(135deg, rgba(25,195,125,.22), rgba(56,189,248,.24));
+      border:1px solid rgba(255,255,255,.08);
+      flex-shrink:0;
+    }
+
+    .module-copy h3{
+      font-size:30px;
+      margin-bottom:8px;
+      letter-spacing:-.7px;
+    }
+
+    .module-copy p{
+      color:var(--muted);
+      max-width:760px;
+      font-size:15px;
+    }
+
+    .module-badge{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(25,195,125,.12);
+      color:#d1fae5;
+      border:1px solid rgba(25,195,125,.2);
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .module-content{
+      padding:24px 28px 30px;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .video-wrap, .materials-panel{
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px;
+      overflow:hidden;
+    }
+
+    .video-head, .materials-head{
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background:rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:14px;
+      font-weight:700;
+      color:#d9f3f8;
+      flex-wrap:wrap;
+    }
+
+    .video-frame{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:#031015;
+    }
+
+    .video-frame iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .video-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:16px;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn-small{
+      padding:12px 16px;
+      border-radius:12px;
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .lists-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      padding:16px;
+      background:rgba(255,255,255,.02);
+    }
+
+    .lesson-list, .pdf-list{
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+
+    .material-link{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 14px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);
+      transition:.2s ease;
+      min-width:0;
+    }
+
+    .material-link:hover{
+      transform:translateY(-2px);
+      border-color:rgba(56,189,248,.35);
+      background:linear-gradient(180deg, rgba(56,189,248,.08), rgba(255,255,255,.04));
+    }
+
+    .material-main{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .material-icon{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:rgba(25,195,125,.12);
+      border:1px solid rgba(25,195,125,.18);
+      font-size:18px;
+      flex-shrink:0;
+    }
+
+    .material-text{
+      min-width:0;
+    }
+
+    .material-text strong{
+      display:block;
+      font-size:14px;
+      color:#fff;
+      margin-bottom:4px;
+    }
+
+    .material-text small{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .material-cta{
+      color:#d1fae5;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+
+    .specific-box{
+      background:linear-gradient(135deg, #0f172a, #0b2440);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:28px;
+      padding:40px;
+      display:grid;
+      gap:20px;
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .specific-box h3{
+      font-size:28px;
+    }
+
+    .specific-box p{
+      color:#cbd5f5;
+      font-size:16px;
+      max-width:700px;
+    }
+
+    .specific-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:14px;
+    }
+
+    .specific-item{
+      background:rgba(255,255,255,.05);
+      padding:18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .specific-note{
+      font-size:13px;
+      color:#94a3b8;
+    }
+
+    footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:24px 20px;
+      margin-top:50px;
+    }
+
+    footer p{
+      opacity:.85;
+      font-size:14px;
+    }
+
+    @media (max-width: 1080px){
+      .login-grid,
+      .module-content,
+      .lists-wrap{
+        grid-template-columns:1fr;
+      }
+      .hero-content h1{font-size:42px}
+      .hero-left{min-height:auto}
+      .hero-platform-content h1{font-size:38px}
+    }
+
+    @media (max-width: 640px){
+      .hero-content{padding:28px 20px}
+      .login-card{padding:22px 18px}
+      .hero-content h1{font-size:34px}
+      .brand-text strong{font-size:20px}
+      .platform-topbar-inner{
+        padding:12px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .hero-platform-content{padding:28px 22px}
+      .hero-platform-content h1{font-size:30px}
+      .section-head h2{font-size:30px}
+      .module-top, .module-content{
+        padding-left:18px;
+        padding-right:18px;
+      }
+      .module-copy h3{font-size:24px}
+      .specific-box{padding:24px 18px}
+    }
+  </style>
 </head>
 <body>
-
-<div id="loginPage">
-  <div class="login-box">
-    <div class="brand">JR Apostilas</div>
-    <h1>IDECAN 2026</h1>
-    <p>Entre na sua plataforma de estudos focada em Guarda Municipal, banca IDECAN, com videoaulas, legislação local, questões comentadas e PDFs visualizados dentro do site.</p>
-
-    <label class="label">E-mail</label>
-    <input class="input" id="email" type="email" placeholder="seuemail@exemplo.com">
-
-    <label class="label">Senha</label>
-    <input class="input" id="senha" type="password" placeholder="Digite idecan2026">
-
-    <button class="btn" onclick="entrarFake()">Entrar</button>
-    <div class="error" id="erro"></div>
-  </div>
-</div>
-
-<div id="app">
-  <aside class="sidebar">
-    <div class="logo-card">
-      <small>Área do aluno</small>
-      <h2>JR Apostilas</h2>
-      <p>Guarda Municipal • Porto Velho • banca IDECAN 2026</p>
-    </div>
-
-    <button class="nav-btn active" onclick="abrir('inicio', this)">Início</button>
-    <button class="nav-btn" onclick="abrir('portugues', this)">Português</button>
-    <button class="nav-btn" onclick="abrir('informatica', this)">Informática</button>
-    <button class="nav-btn" onclick="abrir('guarda', this)">Legislação da Guarda</button>
-    <button class="nav-btn" onclick="abrir('porto', this)">Lei de Porto Velho</button>
-    <button class="nav-btn" onclick="abrir('questoes', this)">Questões Comentadas</button>
-    <button class="nav-btn" onclick="abrir('rondonia', this)">História e Geografia de Rondônia</button>
-
-    <button class="logout-btn" onclick="sair()">Sair</button>
-  </aside>
-
-  <main class="main">
-    <div class="top">
-      <h1>Bem-vindo à sua área de estudos</h1>
-      <p>Login fake simples: clicou em entrar, some a tela e abre a área de membros.</p>
-    </div>
-
-    <section class="page active" id="inicio">
-      <div class="hero">
-        <h2>Guarda Municipal • banca IDECAN</h2>
-        <p>Conteúdo organizado por blocos: Português, Informática, Legislação da Guarda, Lei de Porto Velho, Questões Comentadas e História e Geografia de Rondônia. No bloco de legislação você também encontra os arquivos PDF 1, PDF 2 e PDF 3 abrindo dentro do site.</p>
+  <div id="loginPage" class="login-page">
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="brand-badge">JR</div>
+          <div class="brand-text">
+            <small>Área do aluno</small>
+            <strong>JR Apostilas</strong>
+          </div>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section class="page" id="portugues"></section>
-    <section class="page" id="informatica"></section>
-    <section class="page" id="guarda"></section>
-    <section class="page" id="porto"></section>
-    <section class="page" id="questoes"></section>
-    <section class="page" id="rondonia"></section>
-  </main>
-</div>
+    <main class="login-hero">
+      <div class="container">
+        <div class="login-grid">
+          <section class="hero-card hero-left">
+            <div class="hero-content">
+              <div class="pill">🏥 Plataforma temática da saúde • SESAU 2026</div>
+              <h1>Entre na sua plataforma de estudos</h1>
+              <p>
+                Videoaulas, PDFs, reforços por matéria e acesso visual estilo área de membros
+                para organizar seu estudo com mais clareza.
+              </p>
 
-<div class="modal" id="pdfModal">
-  <div class="modal-box">
-    <div class="modal-top">
-      <h3 id="pdfTitle">PDF</h3>
-      <button class="close-btn" onclick="closePdf()">Fechar</button>
-    </div>
-    <iframe id="pdfFrame" src=""></iframe>
+              <div class="hero-points">
+                <div class="hero-point"><strong>Português com 10 aulas + PDFs</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Raciocínio Lógico com 10 aulas + PDFs</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>SUS / Saúde com 10 aulas + PDFs</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Informática com 10 aulas + PDFs</strong><span>Liberado</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="hero-card login-card">
+            <h2>Acessar plataforma</h2>
+            <p>Faça seu acesso para entrar na área de estudos da JR Apostilas.</p>
+
+            <div class="form">
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Digite seu e-mail" />
+              </div>
+
+              <div class="field">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" />
+              </div>
+
+              <div class="error" id="errorBox">Senha incorreta. Tente novamente.</div>
+
+              <button type="button" class="btn btn-primary" id="entrarBtn">Entrar na plataforma</button>
+            </div>
+
+            <div class="mini-box">
+              <strong>Específicas por cargo</strong>
+              <span>
+                Enfermagem, técnico em enfermagem, administrativo e outros cargos
+                são enviados de forma personalizada no WhatsApp.
+              </span>
+            </div>
+
+            <div class="login-note">
+              Senha padrão deste modelo: <strong>jr2026</strong>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
   </div>
-</div>
 
-<script>
-const SENHA = "idecan2026";
+  <div id="platformPage" class="platform-page hidden">
+    <header class="platform-topbar">
+      <div class="container platform-topbar-inner">
+        <div class="brand">
+          <div class="brand-badge">JR</div>
+          <div class="brand-text">
+            <small>Plataforma Premium</small>
+            <strong>JR Apostilas</strong>
+          </div>
+        </div>
 
-function video(id){
-  return '<iframe src="https://www.youtube.com/embed/' + id + '" allowfullscreen></iframe>';
-}
+        <nav class="menu">
+          <a href="#inicio">Início</a>
+          <a href="#disciplinas">Disciplinas</a>
+          <a href="#especificas">Específicas</a>
+          <button class="btn btn-outline" id="logoutBtn" type="button">Sair</button>
+        </nav>
+      </div>
+    </header>
 
-function abrir(tipo, botao){
-  var pages = document.querySelectorAll(".page");
-  for(var i=0;i<pages.length;i++){
-    pages[i].classList.remove("active");
-  }
-  document.getElementById(tipo).classList.add("active");
+    <main id="inicio">
+      <section class="platform-hero">
+        <div class="container">
+          <div class="hero-platform">
+            <div class="hero-platform-content">
+              <div class="pill">🏥 Plataforma temática da saúde • SESAU 2026</div>
+              <h1>Bem-vindo à sua área de estudos</h1>
+              <p>
+                Videoaulas e materiais em PDF organizados por disciplina, com trilhas extras
+                para Consulplan, SUS e saúde pública.
+              </p>
+              <div class="welcome" id="welcomeText">Acesso liberado</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  var botoes = document.querySelectorAll(".nav-btn");
-  for(var j=0;j<botoes.length;j++){
-    botoes[j].classList.remove("active");
-  }
-  if(botao){ botao.classList.add("active"); }
-}
+      <section id="disciplinas">
+        <div class="container">
+          <div class="section-head">
+            <small>Conteúdo liberado</small>
+            <h2>Disciplinas disponíveis</h2>
+            <p>
+              Cada bloco abaixo reúne uma aula principal incorporada, uma trilha com 10 aulas
+              e os PDFs da mesma matéria.
+            </p>
+          </div>
 
-function openPdf(title, src){
-  document.getElementById("pdfTitle").innerText = title;
-  document.getElementById("pdfFrame").src = src;
-  document.getElementById("pdfModal").classList.add("open");
-}
+          <div class="modules" id="modulesContainer"></div>
+        </div>
+      </section>
 
-function closePdf(){
-  document.getElementById("pdfModal").classList.remove("open");
-  document.getElementById("pdfFrame").src = "";
-}
+      <section id="especificas">
+        <div class="container">
+          <div class="section-head">
+            <small>Conteúdo exclusivo</small>
+            <h2>Área de Conhecimentos Específicos</h2>
+            <p>
+              Cada cargo possui conteúdos diferentes. O material específico é enviado
+              de forma personalizada conforme o cargo do aluno.
+            </p>
+          </div>
 
-function sair(){
-  localStorage.removeItem("login_fake_idecan");
-  document.getElementById("app").style.display = "none";
-  document.getElementById("loginPage").style.display = "flex";
-}
+          <div class="specific-box">
+            <h3>📚 Material específico sob medida para o seu cargo</h3>
 
-function trocarPlayer(secao, titulo, desc, id){
-  var page = document.getElementById(secao);
-  var player = page.querySelector(".player");
-  player.innerHTML =
-    '<div class="player-head"><strong>' + titulo + '</strong><span>' + desc + '</span></div>' +
-    '<div class="player-frame">' + video(id) + '</div>';
-  page.scrollIntoView({behavior:"smooth", block:"start"});
-}
+            <p>
+              Aqui você não recebe conteúdo genérico. O material específico é separado de acordo
+              com o seu cargo, seja enfermagem, técnico em enfermagem, administrativo ou outros.
+            </p>
 
-function entrarFake(){
-  var email = document.getElementById("email").value.trim();
-  var senha = document.getElementById("senha").value.trim();
-  var erro = document.getElementById("erro");
+            <div class="specific-grid">
+              <div class="specific-item">🔹 Enfermagem</div>
+              <div class="specific-item">🔹 Técnico em Enfermagem</div>
+              <div class="specific-item">🔹 Administrativo</div>
+              <div class="specific-item">🔹 Outros cargos</div>
+            </div>
 
-  if(email === ""){
-    erro.innerText = "Digite um e-mail.";
-    return;
-  }
+            <div>
+              <a href="https://wa.me/message/2HS6FDWA5WHFL1" target="_blank" class="btn btn-primary">
+                📲 Pegar minha específica agora
+              </a>
+            </div>
 
-  if(senha !== SENHA){
-    erro.innerText = "Senha incorreta.";
-    return;
-  }
+            <div class="specific-note">
+              Atendimento rápido. Você informa seu cargo e recebe o material correto direto no WhatsApp.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  erro.innerText = "";
-  localStorage.setItem("login_fake_idecan", "ok");
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("app").style.display = "grid";
-}
+    <footer>
+      <p>JR Apostilas © 2026 | Plataforma organizada com videoaulas e PDFs para concursos da área da saúde.</p>
+    </footer>
+  </div>
 
-function montarPaginas(){
-  document.getElementById("portugues").innerHTML =
-    '<h2 class="section-title">Português</h2>' +
-    '<div class="player"><div class="player-head"><strong>Português • banca IDECAN Porto Velho</strong><span>Vídeo principal da área de Português.</span></div><div class="player-frame">' + video("bpG4-S4eZcE") + '</div></div>' +
-    '<div class="grid">' +
-    card("Questões comentadas de Português IDECAN","Regência, crase, concordância e acentuação.","AXqFZpNzJhE","portugues") +
-    card("Questões comentadas de Português • material na descrição","Resolução comentada para concursos IDECAN.","8tHpFX3gg1k","portugues") +
-    card("Gabaritando a IDECAN • resolução de questões","Treino prático de Português.","FgPZdhOBGKM","portugues") +
-    card("Português IDECAN • crase","Aula específica de crase.","yfZcSF66c1E","portugues") +
-    card("Crase • questão comentada da banca IDECAN","Questões de crase.","RyD9Q-0YJw0","portugues") +
-    card("Concordância nominal • banca IDECAN","Questões e explicações de concordância.","GcOghI163bg","portugues") +
-    card("Questões comentadas de Língua Portuguesa","Resolução de exercícios.","MkQ6bh7O2ew","portugues") +
-    card("Crase IDECAN • fácil","Reforço rápido de revisão.","CcjYrgjZ0Qs","portugues") +
-    card("Português • revisão estratégica","Fechamento do bloco.","pK7JPAUcN04","portugues") +
-    '</div>';
+  <script>
+    const SENHA_CORRETA = "jr2026";
 
-  document.getElementById("informatica").innerHTML =
-    '<h2 class="section-title">Informática</h2>' +
-    '<div class="player"><div class="player-head"><strong>20 questões de informática • Guarda Municipal</strong><span>Questões comentadas para reforçar a prática.</span></div><div class="player-frame">' + video("XdOeb5a_mjA") + '</div></div>' +
-    '<div class="grid">' +
-    card("Aulão de informática para Guarda Municipal","Aulão geral para concursos.","0KfmdxVg9FQ","informatica") +
-    card("Concurso Guarda Municipal • informática","Informática aplicada ao concurso.","TOVb7P7ieHQ","informatica") +
-    card("Bloco 01 • questões comentadas de informática","Questões para Guarda Municipal.","jO-6OwZJI7I","informatica") +
-    card("Revisão de informática com questões • banca IDECAN","Questões recentes da banca.","HbL09BFEwQs","informatica") +
-    card("IDECAN • como gabaritar informática","Dicas e revisão estratégica.","MDzdjeO9oas","informatica") +
-    card("Questões de informática para a banca IDECAN","Resolução comentada.","Dq3Uw0zHjaI","informatica") +
-    card("Windows para concursos","Noções fundamentais para prova.","b0iKj9Qm3D4","informatica") +
-    card("Excel para concursos","Funções e pontos cobrados em prova.","o8u8z7YQK1A","informatica") +
-    card("Internet e segurança da informação","Fechamento do bloco.","h4wA7tN5vR8","informatica") +
-    '</div>';
+    const data = [
+      {
+        id: "portugues",
+        icon: "📘",
+        title: "Português",
+        desc: "Mapas mentais, tópicos principais, redação e trilha de reforço focada em Consulplan.",
+        badge: "10 aulas + PDFs",
+        embed: "22iA3PPjr7c",
+        openVideo: "https://youtu.be/22iA3PPjr7c?si=fwPXpdw4BvfX8Qi3",
+        lessons: [
+          { icon:"🎥", title:"Aula 1 — Português base", note:"Sua aula principal", url:"https://youtu.be/22iA3PPjr7c?si=fwPXpdw4BvfX8Qi3" },
+          { icon:"🎥", title:"Aula 2 — Revisão completa Consulplan", note:"Revisão focada", url:"https://www.youtube.com/watch?v=KZcGttByO5E" },
+          { icon:"🎥", title:"Aula 3 — Questões Consulplan 2025", note:"Resolução comentada", url:"https://www.youtube.com/watch?v=uhb_oSErmig" },
+          { icon:"🎥", title:"Aula 4 — Top 10 Consulplan", note:"Treino direcionado", url:"https://www.youtube.com/watch?v=aLlT8aT_z7I" },
+          { icon:"🎥", title:"Aula 5 — Série Consulplan", note:"Playlist com 9 vídeos", url:"https://www.youtube.com/playlist?list=PLuxfznmOlZnnZsjesORBbAxdI7GURZE5_" },
+          { icon:"🎥", title:"Aula 6 — Trilho Consulplan 2025", note:"Playlist temática", url:"https://www.youtube.com/playlist?list=PLMY4hOPmSLvSwSs6EplyyLuDnNNznLSX1" },
+          { icon:"🎥", title:"Aula 7 — Questões Consulplan extra", note:"Playlist complementar", url:"https://www.youtube.com/playlist?list=PLa5pAYgx6pBqBigmazMBAFUFWitRpHhe5" },
+          { icon:"🎥", title:"Aula 8 — Questões instituto Consulplan", note:"Playlist complementar", url:"https://www.youtube.com/playlist?list=PLOWlxP1PbOtEx52hfbpdGZ5Y907mVYm0t" },
+          { icon:"🎥", title:"Aula 9 — Reforço Consulplan", note:"Voltar na série principal", url:"https://www.youtube.com/playlist?list=PLuxfznmOlZnnZsjesORBbAxdI7GURZE5_" },
+          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Playlist Consulplan 2025", url:"https://www.youtube.com/playlist?list=PLMY4hOPmSLvSwSs6EplyyLuDnNNznLSX1" }
+        ],
+        pdfs: [
+          { icon:"📄", title:"Principais tópicos", note:"Resumo dos pontos principais", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/portugues-principais-topicos.pdf" },
+          { icon:"🧠", title:"Mapa mental", note:"Fixação visual rápida", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/portugues-mapa-mental.pdf" },
+          { icon:"✍️", title:"Redação nota 100", note:"Apoio para redação", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/portugues-redacao-nota-100.pdf" }
+        ]
+      },
+      {
+        id: "rlm",
+        icon: "🧮",
+        title: "Raciocínio Lógico",
+        desc: "Apostila, mapas mentais, simulados e trilhas focadas em Consulplan.",
+        badge: "10 aulas + PDFs",
+        embed: "h4ec__8WOp0",
+        openVideo: "https://www.youtube.com/live/h4ec__8WOp0?si=6XPc3JYLsGaBxusV",
+        lessons: [
+          { icon:"🎥", title:"Aula 1 — Raciocínio lógico base", note:"Sua aula principal", url:"https://www.youtube.com/live/h4ec__8WOp0?si=6XPc3JYLsGaBxusV" },
+          { icon:"🎥", title:"Aula 2 — 200 questões Consulplan", note:"Playlist com 16 vídeos", url:"https://www.youtube.com/playlist?list=PLkR-RQjzDGjg4KPw_WUcfqLBlGjSzZC7-" },
+          { icon:"🎥", title:"Aula 3 — Matemática e lógica Consulplan", note:"Playlist atualizada", url:"https://www.youtube.com/playlist?list=PLz6qZoyn3kVCeG78Y7Nk40Hct_JAS_r8M" },
+          { icon:"🎥", title:"Aula 4 — 10 questões Consulplan", note:"Vídeo comentado", url:"https://www.youtube.com/watch?v=BVW1CKdY0xs" },
+          { icon:"🎥", title:"Aula 5 — Ordenação lógica", note:"Questões Consulplan", url:"https://www.youtube.com/watch?v=tj4zW5iO24A" },
+          { icon:"🎥", title:"Aula 6 — Matemática e RLM Consulplan", note:"Vídeo extra", url:"https://www.youtube.com/watch?v=gg1QwSa8V24" },
+          { icon:"🎥", title:"Aula 7 — RLM Consulplan completo", note:"Playlist temática", url:"https://www.youtube.com/playlist?list=PLUjDRr1N48MAq3FTVBot-GN5pPccdWRfk" },
+          { icon:"🎥", title:"Aula 8 — Questões atualizadas", note:"Playlist 2024/2025", url:"https://www.youtube.com/playlist?list=PLz6qZoyn3kVCeG78Y7Nk40Hct_JAS_r8M" },
+          { icon:"🎥", title:"Aula 9 — Banco de questões", note:"Reforço com 200 questões", url:"https://www.youtube.com/playlist?list=PLkR-RQjzDGjg4KPw_WUcfqLBlGjSzZC7-" },
+          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Playlist complementar", url:"https://www.youtube.com/playlist?list=PLUjDRr1N48MAq3FTVBot-GN5pPccdWRfk" }
+        ],
+        pdfs: [
+          { icon:"📘", title:"Apostila", note:"Base teórica organizada", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/raciocinio-logico-apostila.pdf" },
+          { icon:"🧠", title:"Mapas mentais", note:"Revisão visual", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/raciocinio-logico-mapas-mentais.pdf" },
+          { icon:"✅", title:"Simulados", note:"Treino estilo prova", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/raciocinio-logico-simulados.pdf" }
+        ]
+      },
+      {
+        id: "informatica",
+        icon: "💻",
+        title: "Informática",
+        desc: "Segurança da informação, backup, criptografia, malware e reforço para concursos.",
+        badge: "10 aulas + PDFs",
+        embed: "cYqTVCrED_s",
+        openVideo: "https://www.youtube.com/live/cYqTVCrED_s?si=CIWM7CjLvLjtDIMy",
+        lessons: [
+          { icon:"🎥", title:"Aula 1 — Informática base", note:"Sua aula principal", url:"https://www.youtube.com/live/cYqTVCrED_s?si=CIWM7CjLvLjtDIMy" },
+          { icon:"🎥", title:"Aula 2 — Malware e backup", note:"Aula focada em segurança", url:"https://www.youtube.com/watch?v=GO0s1tdAQ1g" },
+          { icon:"🎥", title:"Aula 3 — Backup e criptografias", note:"Aula extra", url:"https://www.youtube.com/watch?v=qXjVD6-MSBU" },
+          { icon:"🎥", title:"Aula 4 — Backup para concursos", note:"Segurança da informação", url:"https://www.youtube.com/watch?v=msKqJpMU9hs" },
+          { icon:"🎥", title:"Aula 5 — Segurança de informação e backup", note:"Aula recente", url:"https://www.youtube.com/watch?v=EAOUdZe4dEU" },
+          { icon:"🎥", title:"Aula 6 — Aplicativos de segurança", note:"Aula 06 para concursos", url:"https://www.youtube.com/watch?v=plpWaoABlaQ" },
+          { icon:"🎥", title:"Aula 7 — Playlist de segurança da informação", note:"44 vídeos", url:"https://www.youtube.com/playlist?list=PLKaxXxugagVs-r531AbIPB5Gw83AKbHj6" },
+          { icon:"🎥", title:"Aula 8 — Abertura da playlist de segurança", note:"Trilho introdutório", url:"https://www.youtube.com/watch?v=AoRlkbkygew" },
+          { icon:"🎥", title:"Aula 9 — Informática para concursos", note:"Reforço geral", url:"https://www.youtube.com/watch?v=msKqJpMU9hs" },
+          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Voltar na playlist", url:"https://www.youtube.com/playlist?list=PLKaxXxugagVs-r531AbIPB5Gw83AKbHj6" }
+        ],
+        pdfs: [
+          { icon:"🔐", title:"Criptografia e backup", note:"Proteção de dados", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/informatica-criptografia-e-backup.pdf" },
+          { icon:"🛡️", title:"Malware e ataques", note:"Ameaças digitais e prevenção", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/informatica-malware-e-ataques.pdf" }
+        ]
+      },
+      {
+        id: "sus",
+        icon: "🏥",
+        title: "SUS / Área da Saúde",
+        desc: "Legislação do SUS, saúde pública, PNH, epidemiologia e ESF.",
+        badge: "10 aulas + PDFs",
+        embed: "gV7gjHEmDyc",
+        openVideo: "https://www.youtube.com/live/gV7gjHEmDyc?si=1WbsVkHyyo4WYqS5",
+        lessons: [
+          { icon:"🎥", title:"Aula 1 — SUS base", note:"Sua aula principal", url:"https://www.youtube.com/live/gV7gjHEmDyc?si=1WbsVkHyyo4WYqS5" },
+          { icon:"🎥", title:"Aula 2 — SESAU/RO Legislação do SUS", note:"Aula focada em SESAU/RO", url:"https://www.youtube.com/watch?v=-VU0LVDmpOU" },
+          { icon:"🎥", title:"Aula 3 — Lei 8.080/90 atualizada", note:"Aula completa", url:"https://www.youtube.com/watch?v=pT-Vz2sxdDc" },
+          { icon:"🎥", title:"Aula 4 — Lei 8.142/90", note:"Aula única", url:"https://www.youtube.com/watch?v=Ri9Gn-Uf-p8" },
+          { icon:"🎥", title:"Aula 5 — Decreto 7.508/2011", note:"Organização do SUS", url:"https://www.youtube.com/watch?v=4GTWWwCgmO8" },
+          { icon:"🎥", title:"Aula 6 — Decreto 7.508 detalhado", note:"Aula complementar", url:"https://www.youtube.com/watch?v=6GB_NupNLiQ" },
+          { icon:"🎥", title:"Aula 7 — PNH para concursos", note:"Humanização", url:"https://www.youtube.com/watch?v=Y9sjDH7RWzs" },
+          { icon:"🎥", title:"Aula 8 — Epidemiologia básica", note:"O que mais cai", url:"https://www.youtube.com/watch?v=xDv7fEyAKGM" },
+          { icon:"🎥", title:"Aula 9 — Estratégia Saúde da Família", note:"Atenção básica / ESF", url:"https://www.youtube.com/watch?v=a-2trufSqTc" },
+          { icon:"🎥", title:"Aula 10 — Vigilância epidemiológica", note:"Reforço de saúde pública", url:"https://www.youtube.com/watch?v=-uB64dsW3RA" }
+        ],
+        pdfs: [
+          { icon:"📄", title:"1000 questões", note:"Treino intensivo", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/sus-1000-questoes.pdf" },
+          { icon:"⚖️", title:"Legislação", note:"Base legal do SUS", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/sus-legislacao.pdf" }
+        ]
+      }
+    ];
 
-  document.getElementById("guarda").innerHTML =
-    '<h2 class="section-title">Legislação da Guarda Municipal</h2>' +
-    '<div class="player"><div class="player-head"><strong>Estatuto das Guardas Municipais • aula completa</strong><span>Lei 13.022/2014 explicada de forma objetiva.</span></div><div class="player-frame">' + video("0d80mBEcamk") + '</div></div>' +
-    '<div class="grid">' +
-    card("Lei 13.022/2014 • aula gratuita","Conteúdo essencial da legislação.","bzhsFsDfHiU","guarda") +
-    card("Lei 13.022/2014 • foco AOCP","Estrutura e competências da lei.","AaqrylnyWUw","guarda") +
-    card("Estatuto Geral das Guardas Municipais","Reforço da matéria.","Xi2PR-HE_Io","guarda") +
-    card("Questões específicas para Guarda Civil Municipal • IDECAN","Questões específicas com foco em Guarda Municipal.","t9lBSr6K0cU","guarda") +
-    card("15 questões • Estatuto das Guardas Municipais • IDECAN","Treino direcionado.","IkkeWP_EqW0","guarda") +
-    card("Princípios de atuação da Guarda","Resumo estratégico.","n6B1VnM0d4Q","guarda") +
-    card("Direitos e deveres da Guarda Municipal","Revisão objetiva.","r9c2M2N7F4A","guarda") +
-    card("Poder de polícia da Guarda","Conceitos cobrados em prova.","a4M8h1NQ7kE","guarda") +
-    card("Revisão final de legislação da Guarda","Fechamento do bloco.","m7D4f1P0QaU","guarda") +
-    '</div>' +
-    '<div class="pdf-grid">' +
-    pdfCard("PDF 1","assets/pdfs/PDF-1.pdf#toolbar=0&navpanes=0&scrollbar=0") +
-    pdfCard("PDF 2","assets/pdfs/PDF-2.pdf#toolbar=0&navpanes=0&scrollbar=0") +
-    pdfCard("PDF 3","assets/pdfs/PDF-3.pdf#toolbar=0&navpanes=0&scrollbar=0") +
-    '</div>';
+    const loginPage = document.getElementById("loginPage");
+    const platformPage = document.getElementById("platformPage");
+    const emailInput = document.getElementById("email");
+    const senhaInput = document.getElementById("senha");
+    const entrarBtn = document.getElementById("entrarBtn");
+    const errorBox = document.getElementById("errorBox");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const welcomeText = document.getElementById("welcomeText");
+    const modulesContainer = document.getElementById("modulesContainer");
 
-  document.getElementById("porto").innerHTML =
-    '<h2 class="section-title">Lei de Porto Velho</h2>' +
-    '<div class="player"><div class="player-head"><strong>Guarda Municipal de Porto Velho • analisando a Lei 1.012</strong><span>Bloco focado na legislação municipal de Porto Velho.</span></div><div class="player-frame">' + video("7JG4A2CcZmg") + '</div></div>' +
-    '<div class="grid">' +
-    card("Aulão da Lei Complementar nº 1.012/2025","Aulão focado na lei da Guarda.","HN_BIPRAMNM","porto") +
-    card("2º Aulão da Lei Complementar nº 1.012/2025","Continuação da revisão da lei.","mcnMwHDKQFs","porto") +
-    card("Concurso Guarda de Porto Velho • IDECAN é a banca","Panorama do concurso.","t5XwDyEl8_U","porto") +
-    card("GCM Porto Velho • IDECAN será a banca","Atualização sobre a banca.","rqkWUgfTHhQ","porto") +
-    card("Concurso Guarda de Porto Velho • banca definida","Informações gerais.","JEjq-lnT3Q8","porto") +
-    card("Curso para Guarda Municipal de Porto Velho/RO","Panorama da preparação.","fWaExzFpO88","porto") +
-    card("Porto Velho vai ter Guarda armada","Contexto de criação.","3FTE_AAy3cE","porto") +
-    card("Porto Velho • Guarda armada com 500 vagas aprovada","Atualização sobre a corporação.","xySr9e85ehA","porto") +
-    card("Câmara aprova projeto da Guarda Municipal","Contexto legislativo local.","YUn2zse0cCQ","porto") +
-    '</div>' +
-    '<div class="note-box"><strong>Lei local</strong><p>A Guarda Municipal de Porto Velho foi regulamentada pela Lei Complementar nº 1.012/2025.</p></div>';
+    function renderModules() {
+      modulesContainer.innerHTML = data.map(subject => `
+        <article class="module" id="${subject.id}">
+          <div class="module-top">
+            <div class="module-left">
+              <div class="module-icon">${subject.icon}</div>
+              <div class="module-copy">
+                <h3>${subject.title}</h3>
+                <p>${subject.desc}</p>
+              </div>
+            </div>
+            <div class="module-badge">${subject.badge}</div>
+          </div>
 
-  document.getElementById("questoes").innerHTML =
-    '<h2 class="section-title">Questões Comentadas</h2>' +
-    '<div class="player"><div class="player-head"><strong>Questões específicas para Guarda Civil Municipal • IDECAN</strong><span>Questões de conhecimentos específicos com foco em Guarda Municipal.</span></div><div class="player-frame">' + video("t9lBSr6K0cU") + '</div></div>' +
-    '<div class="grid">' +
-    card("QUESTÕES IDECAN • GCM Serra • Super Live","Bloco de questões com foco na banca.","XEquTr_ay1o","questoes") +
-    card("IDECAN • bateria de questões comentadas","Questões comentadas para Guarda Municipal.","hCQ0_6CZoPc","questoes") +
-    card("Questões IDECAN GCM Fortaleza • conhecimentos específicos","Mais treino específico para GCM.","R2oJ-DxAufk","questoes") +
-    card("Gabaritando a IDECAN • Português","Questões comentadas de Português.","FgPZdhOBGKM","questoes") +
-    card("Questões comentadas de Português IDECAN","Mais treino de Português.","AXqFZpNzJhE","questoes") +
-    card("Questões comentadas de Português • material na descrição","Reforço de questões.","8tHpFX3gg1k","questoes") +
-    card("Questões comentadas de Língua Portuguesa da banca IDECAN","Resolução alternativa por alternativa.","MkQ6bh7O2ew","questoes") +
-    card("Revisão de informática com questões • banca IDECAN","Questões de informática.","HbL09BFEwQs","questoes") +
-    card("Questões de informática para a banca IDECAN","Mais resolução de informática.","Dq3Uw0zHjaI","questoes") +
-    '</div>';
+          <div class="module-content">
+            <div class="video-wrap">
+              <div class="video-head">
+                <span>🎥 Aula principal de ${subject.title}</span>
+                <span>Assistir dentro da plataforma</span>
+              </div>
 
-  document.getElementById("rondonia").innerHTML =
-    '<h2 class="section-title">História e Geografia de Rondônia</h2>' +
-    '<div class="player"><div class="player-head"><strong>História e Geografia de Rondônia • revisão</strong><span>Revisão final direcionada para concursos em Rondônia.</span></div><div class="player-frame">' + video("_czExbWgLiA") + '</div></div>' +
-    '<div class="grid">' +
-    card("Rondônia • História e Geografia explicadas","Aula ampla da disciplina.","OQNZd6bT-h8","rondonia") +
-    card("História e Geografia de Rondônia • questões comentadas","Questões comentadas da disciplina.","npC4q0fP4PI","rondonia") +
-    card("Geografia de Rondônia para provas e concursos","Aula focada em geografia.","5hXfdHymGlE","rondonia") +
-    card("História e Geografia Rondônia • de Território a Estado","Evolução política e administrativa.","zpTpZ3NpFic","rondonia") +
-    card("Aspectos econômicos de Rondônia","Panorama econômico.","q6X5rT9mL0s","rondonia") +
-    card("Municípios e regionalização de Rondônia","Regionalização e localização.","d7R0sV3kP2m","rondonia") +
-    card("População e cultura de Rondônia","Aspectos sociais e culturais.","s4M9nB1qZ6x","rondonia") +
-    card("Questões de Rondônia para concursos","Mais questões comentadas.","u2D1fN8rK5v","rondonia") +
-    card("Revisão final de Rondônia","Fechamento do bloco regional.","w7H4mC2pL9q","rondonia") +
-    '</div>';
-}
+              <div class="video-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/${subject.embed}"
+                  title="${subject.title}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+              </div>
 
-function card(titulo, desc, id, secao){
-  return '<div class="video-card"><h3>' + titulo + '</h3><p>' + desc + '</p><button class="small-btn" onclick="trocarPlayer(\\'' + secao + '\\',\\'' + titulo.replace(/'/g, "\\\\'") + '\\',\\'' + desc.replace(/'/g, "\\\\'") + '\\',\\'' + id + '\\')">Abrir aqui</button></div>';
-}
+              <div class="video-actions">
+                <a class="btn btn-primary btn-small" href="${subject.openVideo}" target="_blank">Abrir aula principal</a>
+              </div>
+            </div>
 
-function pdfCard(titulo, src){
-  return '<div class="pdf-card"><h3>' + titulo + '</h3><p>Visualização dentro do site.</p><button class="small-btn" onclick="openPdf(\\'' + titulo + '\\',\\'' + src + '\\')">Abrir dentro do site</button></div>';
-}
+            <div class="materials-panel">
+              <div class="materials-head">
+                <span>📚 Trilhas e materiais</span>
+                <span>${subject.lessons.length} aulas + ${subject.pdfs.length} PDFs</span>
+              </div>
 
-montarPaginas();
+              <div class="lists-wrap">
+                <div class="lesson-list">
+                  ${subject.lessons.map(lesson => `
+                    <a class="material-link" href="${lesson.url}" target="_blank">
+                      <div class="material-main">
+                        <div class="material-icon">${lesson.icon}</div>
+                        <div class="material-text">
+                          <strong>${lesson.title}</strong>
+                          <small>${lesson.note}</small>
+                        </div>
+                      </div>
+                      <div class="material-cta">Assistir</div>
+                    </a>
+                  `).join("")}
+                </div>
 
-if(localStorage.getItem("login_fake_idecan") === "ok"){
-  document.getElementById("loginPage").style.display = "none";
-  document.getElementById("app").style.display = "grid";
-}
-</script>
+                <div class="pdf-list">
+                  ${subject.pdfs.map(pdf => `
+                    <a class="material-link" href="${pdf.url}" target="_blank">
+                      <div class="material-main">
+                        <div class="material-icon">${pdf.icon}</div>
+                        <div class="material-text">
+                          <strong>${pdf.title}</strong>
+                          <small>${pdf.note}</small>
+                        </div>
+                      </div>
+                      <div class="material-cta">Baixar PDF</div>
+                    </a>
+                  `).join("")}
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
 
+    function mostrarPlataforma() {
+      const email = localStorage.getItem("jr_apostilas_email") || "aluno";
+      loginPage.classList.add("hidden");
+      platformPage.classList.remove("hidden");
+      welcomeText.textContent = "Acesso liberado para: " + email;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function mostrarLogin() {
+      platformPage.classList.add("hidden");
+      loginPage.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function entrarNaPlataforma() {
+      const email = (emailInput.value || "").trim();
+      const senha = (senhaInput.value || "").trim();
+
+      if (!email) {
+        errorBox.style.display = "block";
+        errorBox.textContent = "Preencha seu e-mail para continuar.";
+        emailInput.focus();
+        return;
+      }
+
+      if (!senha) {
+        errorBox.style.display = "block";
+        errorBox.textContent = "Digite a senha para continuar.";
+        senhaInput.focus();
+        return;
+      }
+
+      if (senha === SENHA_CORRETA) {
+        localStorage.setItem("jr_apostilas_logado", "true");
+        localStorage.setItem("jr_apostilas_email", email);
+        errorBox.style.display = "none";
+        mostrarPlataforma();
+      } else {
+        errorBox.style.display = "block";
+        errorBox.textContent = "Senha incorreta. Tente novamente.";
+      }
+    }
+
+    renderModules();
+
+    const jaLogado = localStorage.getItem("jr_apostilas_logado");
+    if (jaLogado === "true") {
+      mostrarPlataforma();
+    }
+
+    entrarBtn.addEventListener("click", entrarNaPlataforma);
+
+    senhaInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        entrarNaPlataforma();
+      }
+    });
+
+    emailInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        entrarNaPlataforma();
+      }
+    });
+
+    logoutBtn.addEventListener("click", function() {
+      localStorage.removeItem("jr_apostilas_logado");
+      localStorage.removeItem("jr_apostilas_email");
+      senhaInput.value = "";
+      mostrarLogin();
+    });
+  </script>
 </body>
-</html>
+</ht
