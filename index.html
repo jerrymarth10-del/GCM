@@ -1224,34 +1224,34 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function entrarNaPlataforma() {
-      const email = (emailInput.value || "").trim();
-      const senha = (senhaInput.value || "").trim();
+   function entrarNaPlataforma() {
+  const email = (emailInput.value || "").trim();
+  const senha = (senhaInput.value || "").trim();
 
-      if (!email) {
-        errorBox.style.display = "block";
-        errorBox.textContent = "Preencha seu e-mail para continuar.";
-        emailInput.focus();
-        return;
-      }
+  if (!email) {
+    errorBox.style.display = "block";
+    errorBox.textContent = "Preencha seu e-mail para continuar.";
+    emailInput.focus();
+    return;
+  }
 
-      if (!senha) {
-        errorBox.style.display = "block";
-        errorBox.textContent = "Digite a senha para continuar.";
-        senhaInput.focus();
-        return;
-      }
+  if (!senha) {
+    errorBox.style.display = "block";
+    errorBox.textContent = "Digite a senha para continuar.";
+    senhaInput.focus();
+    return;
+  }
 
-      if (senha === SENHA_CORRETA) {
-        localStorage.setItem("jr_apostilas_logado", "true");
-        localStorage.setItem("jr_apostilas_email", email);
-        errorBox.style.display = "none";
-        mostrarPlataforma();
-      } else {
-        errorBox.style.display = "block";
-        errorBox.textContent = "Senha incorreta. Tente novamente.";
-      }
-    }
+  if (senha === "idecan2026") {
+    localStorage.setItem("jr_apostilas_logado", "true");
+    localStorage.setItem("jr_apostilas_email", email);
+    errorBox.style.display = "none";
+    mostrarPlataforma();
+  } else {
+    errorBox.style.display = "block";
+    errorBox.textContent = "Senha incorreta.";
+  }
+}
 
     renderModules();
 
