@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JR Apostilas | Plataforma Premium SESAU</title>
-  <meta name="description" content="Plataforma JR Apostilas com login visual, videoaulas e PDFs para concursos da área da saúde." />
+  <title>JR Apostilas | Plataforma Premium GCM IDECAN</title>
+  <meta name="description" content="Plataforma JR Apostilas com login visual, videoaulas e PDFs para Guarda Municipal, banca IDECAN, Porto Velho e Rondônia." />
   <style>
     :root{
       --bg:#07141a;
@@ -19,9 +19,6 @@
       --blue:#38bdf8;
       --blue2:#0ea5e9;
       --shadow:0 20px 60px rgba(0,0,0,.35);
-      --radius-xl:30px;
-      --radius-lg:24px;
-      --radius-md:16px;
       --max:1280px;
     }
 
@@ -168,7 +165,7 @@
       min-height:620px;
       background:
         linear-gradient(100deg, rgba(4,12,16,.9) 0%, rgba(5,16,21,.82) 45%, rgba(8,24,31,.68) 100%),
-        url('https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=80') center/cover;
+        url('https://images.unsplash.com/photo-1517260911205-8fcfd1749b74?auto=format&fit=crop&w=1600&q=80') center/cover;
       position:relative;
     }
 
@@ -371,7 +368,7 @@
       box-shadow:var(--shadow);
       background:
         linear-gradient(90deg, rgba(5,10,20,.88) 0%, rgba(5,10,20,.74) 45%, rgba(5,10,20,.45) 100%),
-        url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80') center/cover;
+        url('https://images.unsplash.com/photo-1517260911205-8fcfd1749b74?auto=format&fit=crop&w=1400&q=80') center/cover;
     }
 
     .hero-platform-content{
@@ -672,6 +669,64 @@
       color:#94a3b8;
     }
 
+    .pdf-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.76);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:18px;
+    }
+
+    .pdf-modal.open{
+      display:flex;
+    }
+
+    .pdf-modal-box{
+      width:min(1200px, 100%);
+      height:min(88vh, 900px);
+      background:#08141b;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+      display:grid;
+      grid-template-rows:auto 1fr;
+    }
+
+    .pdf-modal-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 16px;
+      background:rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .pdf-modal-top strong{
+      font-size:16px;
+    }
+
+    .pdf-close{
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      padding:10px 14px;
+      font-weight:800;
+      background:linear-gradient(135deg, var(--blue), var(--blue2));
+      color:#fff;
+    }
+
+    .pdf-frame{
+      width:100%;
+      height:100%;
+      border:0;
+      background:#fff;
+    }
+
     footer{
       background:#0f172a;
       color:white;
@@ -737,18 +792,18 @@
         <div class="login-grid">
           <section class="hero-card hero-left">
             <div class="hero-content">
-              <div class="pill">🏥 Plataforma temática da saúde • SESAU 2026</div>
+              <div class="pill">🛡️ Plataforma temática • Guarda Municipal • IDECAN 2026</div>
               <h1>Entre na sua plataforma de estudos</h1>
               <p>
                 Videoaulas, PDFs, reforços por matéria e acesso visual estilo área de membros
-                para organizar seu estudo com mais clareza.
+                para organizar seu estudo para Guarda Municipal com mais clareza.
               </p>
 
               <div class="hero-points">
-                <div class="hero-point"><strong>Português com 10 aulas + PDFs</strong><span>Liberado</span></div>
-                <div class="hero-point"><strong>Raciocínio Lógico com 10 aulas + PDFs</strong><span>Liberado</span></div>
-                <div class="hero-point"><strong>SUS / Saúde com 10 aulas + PDFs</strong><span>Liberado</span></div>
-                <div class="hero-point"><strong>Informática com 10 aulas + PDFs</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Português com 10 aulas</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Informática com 10 aulas</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Legislação da Guarda + PDFs</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Porto Velho • Rondônia • Questões</strong><span>Liberado</span></div>
               </div>
             </div>
           </section>
@@ -774,15 +829,15 @@
             </div>
 
             <div class="mini-box">
-              <strong>Específicas por cargo</strong>
+              <strong>Conteúdo organizado</strong>
               <span>
-                Enfermagem, técnico em enfermagem, administrativo e outros cargos
-                são enviados de forma personalizada no WhatsApp.
+                Português, informática, legislação da guarda, lei de Porto Velho,
+                história e geografia de Rondônia e questões comentadas da banca IDECAN.
               </span>
             </div>
 
             <div class="login-note">
-              Senha padrão deste modelo: <strong>jr2026</strong>
+              Senha padrão deste modelo: <strong>idecan2026</strong>
             </div>
           </section>
         </div>
@@ -815,11 +870,11 @@
         <div class="container">
           <div class="hero-platform">
             <div class="hero-platform-content">
-              <div class="pill">🏥 Plataforma temática da saúde • SESAU 2026</div>
+              <div class="pill">🛡️ Plataforma temática • Guarda Municipal • IDECAN 2026</div>
               <h1>Bem-vindo à sua área de estudos</h1>
               <p>
-                Videoaulas e materiais em PDF organizados por disciplina, com trilhas extras
-                para Consulplan, SUS e saúde pública.
+                Videoaulas e materiais em PDF organizados por disciplina, com trilhas voltadas
+                para a banca IDECAN, legislação da guarda e conteúdos de Porto Velho e Rondônia.
               </p>
               <div class="welcome" id="welcomeText">Acesso liberado</div>
             </div>
@@ -834,7 +889,7 @@
             <h2>Disciplinas disponíveis</h2>
             <p>
               Cada bloco abaixo reúne uma aula principal incorporada, uma trilha com 10 aulas
-              e os PDFs da mesma matéria.
+              e, no bloco de legislação, os PDFs internos da Guarda Municipal.
             </p>
           </div>
 
@@ -845,37 +900,32 @@
       <section id="especificas">
         <div class="container">
           <div class="section-head">
-            <small>Conteúdo exclusivo</small>
-            <h2>Área de Conhecimentos Específicos</h2>
+            <small>Conteúdo complementar</small>
+            <h2>Legislação para a Guarda Municipal e muito mais</h2>
             <p>
-              Cada cargo possui conteúdos diferentes. O material específico é enviado
-              de forma personalizada conforme o cargo do aluno.
+              Aqui você encontra um bloco complementar pensado para reforçar sua preparação
+              com foco em legislação da guarda, prova IDECAN e conteúdos regionais.
             </p>
           </div>
 
           <div class="specific-box">
-            <h3>📚 Material específico sob medida para o seu cargo</h3>
+            <h3>📚 Bloco complementar da preparação</h3>
 
             <p>
-              Aqui você não recebe conteúdo genérico. O material específico é separado de acordo
-              com o seu cargo, seja enfermagem, técnico em enfermagem, administrativo ou outros.
+              O foco desta plataforma é reunir, em um só lugar, as matérias que mais ajudam
+              na preparação para Guarda Municipal: Português, Informática, Legislação da Guarda,
+              Porto Velho, Rondônia e Questões Comentadas.
             </p>
 
             <div class="specific-grid">
-              <div class="specific-item">🔹 Enfermagem</div>
-              <div class="specific-item">🔹 Técnico em Enfermagem</div>
-              <div class="specific-item">🔹 Administrativo</div>
-              <div class="specific-item">🔹 Outros cargos</div>
-            </div>
-
-            <div>
-              <a href="https://wa.me/message/2HS6FDWA5WHFL1" target="_blank" class="btn btn-primary">
-                📲 Pegar minha específica agora
-              </a>
+              <div class="specific-item">🔹 Legislação da Guarda Municipal</div>
+              <div class="specific-item">🔹 Lei de Porto Velho</div>
+              <div class="specific-item">🔹 Questões Comentadas IDECAN</div>
+              <div class="specific-item">🔹 História e Geografia de Rondônia</div>
             </div>
 
             <div class="specific-note">
-              Atendimento rápido. Você informa seu cargo e recebe o material correto direto no WhatsApp.
+              Estude cada bloco, abra os PDFs da legislação e avance nas trilhas em ordem.
             </div>
           </div>
         </div>
@@ -883,277 +933,106 @@
     </main>
 
     <footer>
-      <p>JR Apostilas © 2026 | Plataforma organizada com videoaulas e PDFs para concursos da área da saúde.</p>
+      <p>JR Apostilas ©️ 2026 | Plataforma organizada com videoaulas e PDFs para Guarda Municipal.</p>
     </footer>
   </div>
 
+  <div class="pdf-modal" id="pdfModal">
+    <div class="pdf-modal-box">
+      <div class="pdf-modal-top">
+        <strong id="pdfTitle">PDF</strong>
+        <button class="pdf-close" type="button" id="pdfCloseBtn">Fechar</button>
+      </div>
+      <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
+    </div>
+  </div>
+
   <script>
-    const SENHA_CORRETA = "jr2026";
+    const SENHA_CORRETA = "idecan2026";
 
     const data = [
       {
         id: "portugues",
         icon: "📘",
         title: "Português",
-        desc: "Mapas mentais, tópicos principais, redação e trilha de reforço focada em Consulplan.",
-        badge: "10 aulas + PDFs",
-        embed: "22iA3PPjr7c",
-        openVideo: "https://youtu.be/22iA3PPjr7c?si=fwPXpdw4BvfX8Qi3",
+        desc: "Interpretação, crase, concordância e questões comentadas com foco na banca IDECAN.",
+        badge: "10 aulas",
+        embed: "bpG4-S4eZcE",
+        openVideo: "https://www.youtube.com/watch?v=bpG4-S4eZcE",
         lessons: [
-          { icon:"🎥", title:"Aula 1 — Português base", note:"Sua aula principal", url:"https://youtu.be/22iA3PPjr7c?si=fwPXpdw4BvfX8Qi3" },
-          { icon:"🎥", title:"Aula 2 — Revisão completa Consulplan", note:"Revisão focada", url:"https://www.youtube.com/watch?v=KZcGttByO5E" },
-          { icon:"🎥", title:"Aula 3 — Questões Consulplan 2025", note:"Resolução comentada", url:"https://www.youtube.com/watch?v=uhb_oSErmig" },
-          { icon:"🎥", title:"Aula 4 — Top 10 Consulplan", note:"Treino direcionado", url:"https://www.youtube.com/watch?v=aLlT8aT_z7I" },
-          { icon:"🎥", title:"Aula 5 — Série Consulplan", note:"Playlist com 9 vídeos", url:"https://www.youtube.com/playlist?list=PLuxfznmOlZnnZsjesORBbAxdI7GURZE5_" },
-          { icon:"🎥", title:"Aula 6 — Trilho Consulplan 2025", note:"Playlist temática", url:"https://www.youtube.com/playlist?list=PLMY4hOPmSLvSwSs6EplyyLuDnNNznLSX1" },
-          { icon:"🎥", title:"Aula 7 — Questões Consulplan extra", note:"Playlist complementar", url:"https://www.youtube.com/playlist?list=PLa5pAYgx6pBqBigmazMBAFUFWitRpHhe5" },
-          { icon:"🎥", title:"Aula 8 — Questões instituto Consulplan", note:"Playlist complementar", url:"https://www.youtube.com/playlist?list=PLOWlxP1PbOtEx52hfbpdGZ5Y907mVYm0t" },
-          { icon:"🎥", title:"Aula 9 — Reforço Consulplan", note:"Voltar na série principal", url:"https://www.youtube.com/playlist?list=PLuxfznmOlZnnZsjesORBbAxdI7GURZE5_" },
-          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Playlist Consulplan 2025", url:"https://www.youtube.com/playlist?list=PLMY4hOPmSLvSwSs6EplyyLuDnNNznLSX1" }
+          { icon:"🎥", title:"Aula 1 — Português banca IDECAN Porto Velho", note:"Aula principal", url:"https://www.youtube.com/watch?v=bpG4-S4eZcE" },
+          { icon:"🎥", title:"Aula 2 — Questões comentadas de Português IDECAN", note:"Resolução comentada", url:"https://www.youtube.com/watch?v=AXqFZpNzJhE" },
+          { icon:"🎥", title:"Aula 3 — Questões comentadas de Português", note:"Material complementar", url:"https://www.youtube.com/watch?v=8tHpFX3gg1k" },
+          { icon:"🎥", title:"Aula 4 — Gabaritando a IDECAN", note:"Treino prático", url:"https://www.youtube.com/watch?v=FgPZdhOBGKM" },
+          { icon:"🎥", title:"Aula 5 — Crase para a banca IDECAN", note:"Ponto específico", url:"https://www.youtube.com/watch?v=yfZcSF66c1E" },
+          { icon:"🎥", title:"Aula 6 — Crase comentada", note:"Questões de crase", url:"https://www.youtube.com/watch?v=RyD9Q-0YJw0" },
+          { icon:"🎥", title:"Aula 7 — Concordância nominal", note:"Ponto clássico", url:"https://www.youtube.com/watch?v=GcOghI163bg" },
+          { icon:"🎥", title:"Aula 8 — Língua Portuguesa IDECAN", note:"Resolução de exercícios", url:"https://www.youtube.com/watch?v=MkQ6bh7O2ew" },
+          { icon:"🎥", title:"Aula 9 — Crase IDECAN fácil", note:"Reforço rápido", url:"https://www.youtube.com/watch?v=CcjYrgjZ0Qs" },
+          { icon:"🎥", title:"Aula 10 — Revisão final de Português", note:"Fechamento do bloco", url:"https://www.youtube.com/watch?v=bpG4-S4eZcE" }
         ],
-        pdfs: [
-          { icon:"📄", title:"Principais tópicos", note:"Resumo dos pontos principais", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/portugues-principais-topicos.pdf" },
-          { icon:"🧠", title:"Mapa mental", note:"Fixação visual rápida", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/portugues-mapa-mental.pdf" },
-          { icon:"✍️", title:"Redação nota 100", note:"Apoio para redação", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/portugues-redacao-nota-100.pdf" }
-        ]
-      },
-      {
-        id: "rlm",
-        icon: "🧮",
-        title: "Raciocínio Lógico",
-        desc: "Apostila, mapas mentais, simulados e trilhas focadas em Consulplan.",
-        badge: "10 aulas + PDFs",
-        embed: "h4ec__8WOp0",
-        openVideo: "https://www.youtube.com/live/h4ec__8WOp0?si=6XPc3JYLsGaBxusV",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — Raciocínio lógico base", note:"Sua aula principal", url:"https://www.youtube.com/live/h4ec__8WOp0?si=6XPc3JYLsGaBxusV" },
-          { icon:"🎥", title:"Aula 2 — 200 questões Consulplan", note:"Playlist com 16 vídeos", url:"https://www.youtube.com/playlist?list=PLkR-RQjzDGjg4KPw_WUcfqLBlGjSzZC7-" },
-          { icon:"🎥", title:"Aula 3 — Matemática e lógica Consulplan", note:"Playlist atualizada", url:"https://www.youtube.com/playlist?list=PLz6qZoyn3kVCeG78Y7Nk40Hct_JAS_r8M" },
-          { icon:"🎥", title:"Aula 4 — 10 questões Consulplan", note:"Vídeo comentado", url:"https://www.youtube.com/watch?v=BVW1CKdY0xs" },
-          { icon:"🎥", title:"Aula 5 — Ordenação lógica", note:"Questões Consulplan", url:"https://www.youtube.com/watch?v=tj4zW5iO24A" },
-          { icon:"🎥", title:"Aula 6 — Matemática e RLM Consulplan", note:"Vídeo extra", url:"https://www.youtube.com/watch?v=gg1QwSa8V24" },
-          { icon:"🎥", title:"Aula 7 — RLM Consulplan completo", note:"Playlist temática", url:"https://www.youtube.com/playlist?list=PLUjDRr1N48MAq3FTVBot-GN5pPccdWRfk" },
-          { icon:"🎥", title:"Aula 8 — Questões atualizadas", note:"Playlist 2024/2025", url:"https://www.youtube.com/playlist?list=PLz6qZoyn3kVCeG78Y7Nk40Hct_JAS_r8M" },
-          { icon:"🎥", title:"Aula 9 — Banco de questões", note:"Reforço com 200 questões", url:"https://www.youtube.com/playlist?list=PLkR-RQjzDGjg4KPw_WUcfqLBlGjSzZC7-" },
-          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Playlist complementar", url:"https://www.youtube.com/playlist?list=PLUjDRr1N48MAq3FTVBot-GN5pPccdWRfk" }
-        ],
-        pdfs: [
-          { icon:"📘", title:"Apostila", note:"Base teórica organizada", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/raciocinio-logico-apostila.pdf" },
-          { icon:"🧠", title:"Mapas mentais", note:"Revisão visual", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/raciocinio-logico-mapas-mentais.pdf" },
-          { icon:"✅", title:"Simulados", note:"Treino estilo prova", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/raciocinio-logico-simulados.pdf" }
-        ]
+        pdfs: []
       },
       {
         id: "informatica",
         icon: "💻",
         title: "Informática",
-        desc: "Segurança da informação, backup, criptografia, malware e reforço para concursos.",
-        badge: "10 aulas + PDFs",
-        embed: "cYqTVCrED_s",
-        openVideo: "https://www.youtube.com/live/cYqTVCrED_s?si=CIWM7CjLvLjtDIMy",
+        desc: "Questões, revisão e noções essenciais de informática para concursos com foco em IDECAN.",
+        badge: "10 aulas",
+        embed: "XdOeb5a_mjA",
+        openVideo: "https://www.youtube.com/watch?v=XdOeb5a_mjA",
         lessons: [
-          { icon:"🎥", title:"Aula 1 — Informática base", note:"Sua aula principal", url:"https://www.youtube.com/live/cYqTVCrED_s?si=CIWM7CjLvLjtDIMy" },
-          { icon:"🎥", title:"Aula 2 — Malware e backup", note:"Aula focada em segurança", url:"https://www.youtube.com/watch?v=GO0s1tdAQ1g" },
-          { icon:"🎥", title:"Aula 3 — Backup e criptografias", note:"Aula extra", url:"https://www.youtube.com/watch?v=qXjVD6-MSBU" },
-          { icon:"🎥", title:"Aula 4 — Backup para concursos", note:"Segurança da informação", url:"https://www.youtube.com/watch?v=msKqJpMU9hs" },
-          { icon:"🎥", title:"Aula 5 — Segurança de informação e backup", note:"Aula recente", url:"https://www.youtube.com/watch?v=EAOUdZe4dEU" },
-          { icon:"🎥", title:"Aula 6 — Aplicativos de segurança", note:"Aula 06 para concursos", url:"https://www.youtube.com/watch?v=plpWaoABlaQ" },
-          { icon:"🎥", title:"Aula 7 — Playlist de segurança da informação", note:"44 vídeos", url:"https://www.youtube.com/playlist?list=PLKaxXxugagVs-r531AbIPB5Gw83AKbHj6" },
-          { icon:"🎥", title:"Aula 8 — Abertura da playlist de segurança", note:"Trilho introdutório", url:"https://www.youtube.com/watch?v=AoRlkbkygew" },
-          { icon:"🎥", title:"Aula 9 — Informática para concursos", note:"Reforço geral", url:"https://www.youtube.com/watch?v=msKqJpMU9hs" },
-          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Voltar na playlist", url:"https://www.youtube.com/playlist?list=PLKaxXxugagVs-r531AbIPB5Gw83AKbHj6" }
+          { icon:"🎥", title:"Aula 1 — 20 questões de informática", note:"Aula principal", url:"https://www.youtube.com/watch?v=XdOeb5a_mjA" },
+          { icon:"🎥", title:"Aula 2 — Aulão de informática para Guarda", note:"Aulão geral", url:"https://www.youtube.com/watch?v=0KfmdxVg9FQ" },
+          { icon:"🎥", title:"Aula 3 — Concurso Guarda Municipal • informática", note:"Aplicação na prova", url:"https://www.youtube.com/watch?v=TOVb7P7ieHQ" },
+          { icon:"🎥", title:"Aula 4 — Questões comentadas de informática", note:"Bloco de questões", url:"https://www.youtube.com/watch?v=jO-6OwZJI7I" },
+          { icon:"🎥", title:"Aula 5 — Revisão de informática IDECAN", note:"Revisão direcionada", url:"https://www.youtube.com/watch?v=HbL09BFEwQs" },
+          { icon:"🎥", title:"Aula 6 — Como gabaritar informática", note:"Estratégia", url:"https://www.youtube.com/watch?v=MDzdjeO9oas" },
+          { icon:"🎥", title:"Aula 7 — Questões de informática IDECAN", note:"Treino comentado", url:"https://www.youtube.com/watch?v=Dq3Uw0zHjaI" },
+          { icon:"🎥", title:"Aula 8 — Informática básica para concursos", note:"Reforço geral", url:"https://www.youtube.com/watch?v=0KfmdxVg9FQ" },
+          { icon:"🎥", title:"Aula 9 — Questões de informática para Guarda", note:"Revisão prática", url:"https://www.youtube.com/watch?v=jO-6OwZJI7I" },
+          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Revisão final", url:"https://www.youtube.com/watch?v=HbL09BFEwQs" }
+        ],
+        pdfs: []
+      },
+      {
+        id: "guarda",
+        icon: "🛡️",
+        title: "Legislação da Guarda Municipal",
+        desc: "Lei 13.022/2014, estatuto das guardas e materiais em PDF visualizados dentro do site.",
+        badge: "10 aulas + 3 PDFs",
+        embed: "0d80mBEcamk",
+        openVideo: "https://www.youtube.com/watch?v=0d80mBEcamk",
+        lessons: [
+          { icon:"🎥", title:"Aula 1 — Estatuto das Guardas Municipais", note:"Aula principal", url:"https://www.youtube.com/watch?v=0d80mBEcamk" },
+          { icon:"🎥", title:"Aula 2 — Lei 13.022/2014", note:"Aula gratuita", url:"https://www.youtube.com/watch?v=bzhsFsDfHiU" },
+          { icon:"🎥", title:"Aula 3 — Lei 13.022 foco concurso", note:"Estrutura e competências", url:"https://www.youtube.com/watch?v=AaqrylnyWUw" },
+          { icon:"🎥", title:"Aula 4 — Estatuto Geral das Guardas", note:"Reforço da matéria", url:"https://www.youtube.com/watch?v=Xi2PR-HE_Io" },
+          { icon:"🎥", title:"Aula 5 — Questões específicas IDECAN", note:"Conhecimentos específicos", url:"https://www.youtube.com/watch?v=t9lBSr6K0cU" },
+          { icon:"🎥", title:"Aula 6 — 15 questões da Lei 13.022", note:"Treino direcionado", url:"https://www.youtube.com/watch?v=IkkeWP_EqW0" },
+          { icon:"🎥", title:"Aula 7 — Estatuto das Guardas Municipais", note:"Revisão do estatuto", url:"https://www.youtube.com/watch?v=0d80mBEcamk" },
+          { icon:"🎥", title:"Aula 8 — Lei 13.022/2014 aula gratuita", note:"Mais reforço", url:"https://www.youtube.com/watch?v=bzhsFsDfHiU" },
+          { icon:"🎥", title:"Aula 9 — Questões da legislação da Guarda", note:"Questões práticas", url:"https://www.youtube.com/watch?v=IkkeWP_EqW0" },
+          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Revisão final", url:"https://www.youtube.com/watch?v=t9lBSr6K0cU" }
         ],
         pdfs: [
-          { icon:"🔐", title:"Criptografia e backup", note:"Proteção de dados", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/informatica-criptografia-e-backup.pdf" },
-          { icon:"🛡️", title:"Malware e ataques", note:"Ameaças digitais e prevenção", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/informatica-malware-e-ataques.pdf" }
+          { icon:"📄", title:"PDF 1", note:"Material 1 da Guarda Municipal", modal:true, url:"assets/pdfs/PDF-1.pdf" },
+          { icon:"📄", title:"PDF 2", note:"Material 2 da Guarda Municipal", modal:true, url:"assets/pdfs/PDF-2.pdf" },
+          { icon:"📄", title:"PDF 3", note:"Material 3 da Guarda Municipal", modal:true, url:"assets/pdfs/PDF-3.pdf" }
         ]
       },
       {
-        id: "sus",
-        icon: "🏥",
-        title: "SUS / Área da Saúde",
-        desc: "Legislação do SUS, saúde pública, PNH, epidemiologia e ESF.",
-        badge: "10 aulas + PDFs",
-        embed: "gV7gjHEmDyc",
-        openVideo: "https://www.youtube.com/live/gV7gjHEmDyc?si=1WbsVkHyyo4WYqS5",
+        id: "porto-velho",
+        icon: "🏛️",
+        title: "Lei de Porto Velho",
+        desc: "Criação e regulamentação da Guarda Municipal de Porto Velho com foco na banca IDECAN.",
+        badge: "10 aulas",
+        embed: "7JG4A2CcZmg",
+        openVideo: "https://www.youtube.com/watch?v=7JG4A2CcZmg",
         lessons: [
-          { icon:"🎥", title:"Aula 1 — SUS base", note:"Sua aula principal", url:"https://www.youtube.com/live/gV7gjHEmDyc?si=1WbsVkHyyo4WYqS5" },
-          { icon:"🎥", title:"Aula 2 — SESAU/RO Legislação do SUS", note:"Aula focada em SESAU/RO", url:"https://www.youtube.com/watch?v=-VU0LVDmpOU" },
-          { icon:"🎥", title:"Aula 3 — Lei 8.080/90 atualizada", note:"Aula completa", url:"https://www.youtube.com/watch?v=pT-Vz2sxdDc" },
-          { icon:"🎥", title:"Aula 4 — Lei 8.142/90", note:"Aula única", url:"https://www.youtube.com/watch?v=Ri9Gn-Uf-p8" },
-          { icon:"🎥", title:"Aula 5 — Decreto 7.508/2011", note:"Organização do SUS", url:"https://www.youtube.com/watch?v=4GTWWwCgmO8" },
-          { icon:"🎥", title:"Aula 6 — Decreto 7.508 detalhado", note:"Aula complementar", url:"https://www.youtube.com/watch?v=6GB_NupNLiQ" },
-          { icon:"🎥", title:"Aula 7 — PNH para concursos", note:"Humanização", url:"https://www.youtube.com/watch?v=Y9sjDH7RWzs" },
-          { icon:"🎥", title:"Aula 8 — Epidemiologia básica", note:"O que mais cai", url:"https://www.youtube.com/watch?v=xDv7fEyAKGM" },
-          { icon:"🎥", title:"Aula 9 — Estratégia Saúde da Família", note:"Atenção básica / ESF", url:"https://www.youtube.com/watch?v=a-2trufSqTc" },
-          { icon:"🎥", title:"Aula 10 — Vigilância epidemiológica", note:"Reforço de saúde pública", url:"https://www.youtube.com/watch?v=-uB64dsW3RA" }
-        ],
-        pdfs: [
-          { icon:"📄", title:"1000 questões", note:"Treino intensivo", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/sus-1000-questoes.pdf" },
-          { icon:"⚖️", title:"Legislação", note:"Base legal do SUS", url:"https://raw.githubusercontent.com/jerrymarth10-del/sesau-2026/main/sus-legislacao.pdf" }
-        ]
-      }
-    ];
-
-    const loginPage = document.getElementById("loginPage");
-    const platformPage = document.getElementById("platformPage");
-    const emailInput = document.getElementById("email");
-    const senhaInput = document.getElementById("senha");
-    const entrarBtn = document.getElementById("entrarBtn");
-    const errorBox = document.getElementById("errorBox");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const welcomeText = document.getElementById("welcomeText");
-    const modulesContainer = document.getElementById("modulesContainer");
-
-    function renderModules() {
-      modulesContainer.innerHTML = data.map(subject => `
-        <article class="module" id="${subject.id}">
-          <div class="module-top">
-            <div class="module-left">
-              <div class="module-icon">${subject.icon}</div>
-              <div class="module-copy">
-                <h3>${subject.title}</h3>
-                <p>${subject.desc}</p>
-              </div>
-            </div>
-            <div class="module-badge">${subject.badge}</div>
-          </div>
-
-          <div class="module-content">
-            <div class="video-wrap">
-              <div class="video-head">
-                <span>🎥 Aula principal de ${subject.title}</span>
-                <span>Assistir dentro da plataforma</span>
-              </div>
-
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/${subject.embed}"
-                  title="${subject.title}"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen></iframe>
-              </div>
-
-              <div class="video-actions">
-                <a class="btn btn-primary btn-small" href="${subject.openVideo}" target="_blank">Abrir aula principal</a>
-              </div>
-            </div>
-
-            <div class="materials-panel">
-              <div class="materials-head">
-                <span>📚 Trilhas e materiais</span>
-                <span>${subject.lessons.length} aulas + ${subject.pdfs.length} PDFs</span>
-              </div>
-
-              <div class="lists-wrap">
-                <div class="lesson-list">
-                  ${subject.lessons.map(lesson => `
-                    <a class="material-link" href="${lesson.url}" target="_blank">
-                      <div class="material-main">
-                        <div class="material-icon">${lesson.icon}</div>
-                        <div class="material-text">
-                          <strong>${lesson.title}</strong>
-                          <small>${lesson.note}</small>
-                        </div>
-                      </div>
-                      <div class="material-cta">Assistir</div>
-                    </a>
-                  `).join("")}
-                </div>
-
-                <div class="pdf-list">
-                  ${subject.pdfs.map(pdf => `
-                    <a class="material-link" href="${pdf.url}" target="_blank">
-                      <div class="material-main">
-                        <div class="material-icon">${pdf.icon}</div>
-                        <div class="material-text">
-                          <strong>${pdf.title}</strong>
-                          <small>${pdf.note}</small>
-                        </div>
-                      </div>
-                      <div class="material-cta">Baixar PDF</div>
-                    </a>
-                  `).join("")}
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      `).join("");
-    }
-
-    function mostrarPlataforma() {
-      const email = localStorage.getItem("jr_apostilas_email") || "aluno";
-      loginPage.classList.add("hidden");
-      platformPage.classList.remove("hidden");
-      welcomeText.textContent = "Acesso liberado para: " + email;
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function mostrarLogin() {
-      platformPage.classList.add("hidden");
-      loginPage.classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function entrarNaPlataforma() {
-      const email = (emailInput.value || "").trim();
-      const senha = (senhaInput.value || "").trim();
-
-      if (!email) {
-        errorBox.style.display = "block";
-        errorBox.textContent = "Preencha seu e-mail para continuar.";
-        emailInput.focus();
-        return;
-      }
-
-      if (!senha) {
-        errorBox.style.display = "block";
-        errorBox.textContent = "Digite a senha para continuar.";
-        senhaInput.focus();
-        return;
-      }
-
-      if (senha === SENHA_CORRETA) {
-        localStorage.setItem("jr_apostilas_logado", "true");
-        localStorage.setItem("jr_apostilas_email", email);
-        errorBox.style.display = "none";
-        mostrarPlataforma();
-      } else {
-        errorBox.style.display = "block";
-        errorBox.textContent = "Senha incorreta. Tente novamente.";
-      }
-    }
-
-    renderModules();
-
-    const jaLogado = localStorage.getItem("jr_apostilas_logado");
-    if (jaLogado === "true") {
-      mostrarPlataforma();
-    }
-
-    entrarBtn.addEventListener("click", entrarNaPlataforma);
-
-    senhaInput.addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        entrarNaPlataforma();
-      }
-    });
-
-    emailInput.addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        entrarNaPlataforma();
-      }
-    });
-
-    logoutBtn.addEventListener("click", function() {
-      localStorage.removeItem("jr_apostilas_logado");
-      localStorage.removeItem("jr_apostilas_email");
-      senhaInput.value = "";
-      mostrarLogin();
-    });
-  </script>
-</body>
-</ht
+          { icon:"🎥", title:"Aula 1 — Guarda Municipal de Porto Velho", note:"Aula principal", url:"https://www.youtube.com/watch?v=7JG4A2CcZmg" },
+          { icon:"🎥", title:"Aula 2 — Aulão da Lei Complementar 1.012/2025", note:"Aulão focado na lei", url:"https://www.youtube.com/watch?v=HN_BIPRAMNM" },
+          { icon:"🎥", title:"Aula 3 — 2º Aulão da Lei Complementar 1.012/2025", note:"Continuação da revisão", url:"https://www.youtube.com/watch?v=mcnMwHDKQFs" },
+          { icon:"🎥", title:"Aula 4 — Concurso Guarda de Porto Velho", note:"Panorama do concurso", url:"https://www.youtube.com/watch?v=t5XwDyEl8_U" },
+          { icon:"🎥", title:"Aula 5 — GCM Porto Velho e banca IDECAN", note:"Atualização da banca", url:"https://www.youtube.com/watch?v=rqkWUgfTHhQ" },
+          { icon:"🎥", title:"Aula 6 — Concurso Guarda de Porto Velho
