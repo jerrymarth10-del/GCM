@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JR Apostilas | Plataforma Premium GCM IDECAN</title>
-  <meta name="description" content="Plataforma JR Apostilas com login visual, videoaulas e PDFs para Guarda Municipal, banca IDECAN, Porto Velho e Rondônia." />
+  <title>JR Apostilas | Plataforma Premium GCM IDECAN + Quiz</title>
+  <meta name="description" content="Plataforma JR Apostilas com login visual, videoaulas e quizzes por matéria para Guarda Municipal." />
   <style>
     :root{
       --bg:#07141a;
       --bg2:#0b2028;
-      --card:rgba(10,28,37,.88);
-      --card2:#10232d;
       --line:rgba(255,255,255,.08);
       --text:#f4fbfd;
       --muted:#b8d0d8;
@@ -19,9 +17,6 @@
       --blue:#38bdf8;
       --blue2:#0ea5e9;
       --shadow:0 20px 60px rgba(0,0,0,.35);
-      --radius-xl:30px;
-      --radius-lg:24px;
-      --radius-md:16px;
       --max:1280px;
     }
 
@@ -36,19 +31,6 @@
         linear-gradient(180deg, #041015 0%, #07141a 45%, #08171d 100%);
       min-height:100vh;
       overflow-x:hidden;
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-      background-size:34px 34px;
-      mask-image:linear-gradient(to bottom, rgba(0,0,0,.35), transparent 85%);
-      z-index:0;
     }
 
     a{text-decoration:none;color:inherit}
@@ -118,19 +100,18 @@
       box-shadow:0 14px 30px rgba(22,163,74,.28);
     }
 
-    .btn-primary:hover{
-      transform:translateY(-1px);
-      filter:brightness(1.03);
-    }
-
+    .btn-primary:hover{transform:translateY(-1px)}
     .btn-outline{
       color:#fff;
       background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.12);
     }
 
-    .btn-outline:hover{
-      background:rgba(255,255,255,.09);
+    .btn-small{
+      padding:12px 16px;
+      border-radius:12px;
+      font-size:14px;
+      font-weight:800;
     }
 
     .login-page{
@@ -139,10 +120,7 @@
       flex-direction:column;
     }
 
-    .topbar{
-      padding:18px 0;
-    }
-
+    .topbar{padding:18px 0}
     .login-hero{
       flex:1;
       display:grid;
@@ -169,7 +147,6 @@
       background:
         linear-gradient(100deg, rgba(4,12,16,.9) 0%, rgba(5,16,21,.82) 45%, rgba(8,24,31,.68) 100%),
         url('https://images.unsplash.com/photo-1517260911205-8fcfd1749b74?auto=format&fit=crop&w=1600&q=80') center/cover;
-      position:relative;
     }
 
     .hero-content{
@@ -224,7 +201,6 @@
       border:1px solid rgba(255,255,255,.08);
     }
 
-    .hero-point strong{font-size:15px}
     .hero-point span{
       color:#a7f3d0;
       font-size:12px;
@@ -251,15 +227,8 @@
       font-size:15px;
     }
 
-    .form{
-      display:grid;
-      gap:16px;
-    }
-
-    .field{
-      display:grid;
-      gap:8px;
-    }
+    .form{display:grid;gap:16px}
+    .field{display:grid;gap:8px}
 
     .field label{
       font-size:14px;
@@ -280,10 +249,6 @@
     }
 
     .field input::placeholder{color:#aebcc8}
-    .field input:focus{
-      border-color:rgba(56,189,248,.45);
-      box-shadow:0 0 0 4px rgba(56,189,248,.10);
-    }
 
     .error{
       display:none;
@@ -357,11 +322,7 @@
       font-size:14px;
     }
 
-    .menu a:hover{color:#fff}
-
-    .platform-hero{
-      padding:52px 0 24px;
-    }
+    .platform-hero{padding:52px 0 24px}
 
     .hero-platform{
       border:1px solid var(--line);
@@ -505,14 +466,14 @@
       align-items:start;
     }
 
-    .video-wrap, .materials-panel{
+    .video-wrap,.materials-panel,.quiz-panel{
       background:rgba(0,0,0,.18);
       border:1px solid rgba(255,255,255,.06);
       border-radius:22px;
       overflow:hidden;
     }
 
-    .video-head, .materials-head{
+    .video-head,.materials-head,.quiz-head{
       padding:14px 16px;
       display:flex;
       align-items:center;
@@ -550,22 +511,15 @@
       background:rgba(255,255,255,.03);
     }
 
-    .btn-small{
-      padding:12px 16px;
-      border-radius:12px;
-      font-size:14px;
-      font-weight:800;
-    }
-
     .lists-wrap{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:1fr;
       gap:14px;
       padding:16px;
       background:rgba(255,255,255,.02);
     }
 
-    .lesson-list, .pdf-list{
+    .lesson-list{
       display:grid;
       gap:10px;
       align-content:start;
@@ -576,18 +530,11 @@
       justify-content:space-between;
       align-items:center;
       gap:16px;
-      padding:14px 14px;
+      padding:14px;
       border-radius:16px;
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
       border:1px solid rgba(255,255,255,.08);
-      transition:.2s ease;
       min-width:0;
-    }
-
-    .material-link:hover{
-      transform:translateY(-2px);
-      border-color:rgba(56,189,248,.35);
-      background:linear-gradient(180deg, rgba(56,189,248,.08), rgba(255,255,255,.04));
     }
 
     .material-main{
@@ -607,10 +554,6 @@
       border:1px solid rgba(25,195,125,.18);
       font-size:18px;
       flex-shrink:0;
-    }
-
-    .material-text{
-      min-width:0;
     }
 
     .material-text strong{
@@ -634,100 +577,139 @@
       flex-shrink:0;
     }
 
-    .specific-box{
-      background:linear-gradient(135deg, #0f172a, #0b2440);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:28px;
-      padding:40px;
-      display:grid;
-      gap:20px;
-      box-shadow:0 20px 50px rgba(0,0,0,.4);
-    }
+    .quiz-panel{grid-column:1 / -1}
+    .quiz-shell{padding:18px}
 
-    .specific-box h3{
-      font-size:28px;
-    }
-
-    .specific-box p{
-      color:#cbd5f5;
-      font-size:16px;
-      max-width:700px;
-    }
-
-    .specific-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-      gap:14px;
-    }
-
-    .specific-item{
-      background:rgba(255,255,255,.05);
-      padding:18px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .specific-note{
-      font-size:13px;
-      color:#94a3b8;
-    }
-
-    .pdf-modal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.76);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      padding:18px;
-    }
-
-    .pdf-modal.open{
-      display:flex;
-    }
-
-    .pdf-modal-box{
-      width:min(1200px, 100%);
-      height:min(88vh, 900px);
-      background:#08141b;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,.45);
-      display:grid;
-      grid-template-rows:auto 1fr;
-    }
-
-    .pdf-modal-top{
+    .quiz-intro{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
-      padding:14px 16px;
-      background:rgba(255,255,255,.04);
-      border-bottom:1px solid rgba(255,255,255,.08);
+      gap:14px;
+      flex-wrap:wrap;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
     }
 
-    .pdf-modal-top strong{
-      font-size:16px;
+    .quiz-intro p{
+      color:var(--muted);
+      font-size:14px;
+      max-width:780px;
+      line-height:1.6;
     }
 
-    .pdf-close{
-      border:none;
-      cursor:pointer;
-      border-radius:12px;
-      padding:10px 14px;
-      font-weight:800;
-      background:linear-gradient(135deg, var(--blue), var(--blue2));
-      color:#fff;
+    .quiz-box{
+      margin-top:16px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
     }
 
-    .pdf-frame{
+    .quiz-progress-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+      font-size:14px;
+      font-weight:700;
+      color:#d9f3f8;
+    }
+
+    .quiz-bar{
       width:100%;
+      height:10px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
+      margin-bottom:18px;
+    }
+
+    .quiz-bar-fill{
       height:100%;
-      border:0;
-      background:#fff;
+      width:0%;
+      background:linear-gradient(90deg, var(--green), var(--blue));
+      transition:.25s ease;
+    }
+
+    .quiz-question{
+      font-size:22px;
+      line-height:1.5;
+      margin-bottom:16px;
+    }
+
+    .quiz-options{
+      display:grid;
+      gap:12px;
+    }
+
+    .quiz-option{
+      width:100%;
+      text-align:left;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
+      font-size:15px;
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    .quiz-option:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(56,189,248,.35);
+    }
+
+    .quiz-option.correct{
+      border-color:rgba(34,197,94,.5);
+      background:rgba(34,197,94,.14);
+    }
+
+    .quiz-option.wrong{
+      border-color:rgba(239,68,68,.5);
+      background:rgba(239,68,68,.14);
+    }
+
+    .quiz-feedback{
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#dbeafe;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .quiz-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .quiz-result{
+      margin-top:16px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(56,189,248,.08), rgba(34,197,94,.07));
+    }
+
+    .quiz-result h4{
+      font-size:26px;
+      margin-bottom:8px;
+    }
+
+    .quiz-result p{
+      line-height:1.7;
+      color:#e8f2f5;
+      font-size:16px;
     }
 
     footer{
@@ -743,18 +725,14 @@
       font-size:14px;
     }
 
-    @media (max-width: 1080px){
-      .login-grid,
-      .module-content,
-      .lists-wrap{
-        grid-template-columns:1fr;
-      }
+    @media (max-width:1080px){
+      .login-grid,.module-content{grid-template-columns:1fr}
       .hero-content h1{font-size:42px}
       .hero-left{min-height:auto}
       .hero-platform-content h1{font-size:38px}
     }
 
-    @media (max-width: 640px){
+    @media (max-width:640px){
       .hero-content{padding:28px 20px}
       .login-card{padding:22px 18px}
       .hero-content h1{font-size:34px}
@@ -767,12 +745,9 @@
       .hero-platform-content{padding:28px 22px}
       .hero-platform-content h1{font-size:30px}
       .section-head h2{font-size:30px}
-      .module-top, .module-content{
-        padding-left:18px;
-        padding-right:18px;
-      }
+      .module-top,.module-content{padding-left:18px;padding-right:18px}
       .module-copy h3{font-size:24px}
-      .specific-box{padding:24px 18px}
+      .quiz-question{font-size:19px}
     }
   </style>
 </head>
@@ -797,16 +772,12 @@
             <div class="hero-content">
               <div class="pill">🛡️ Plataforma temática • Guarda Municipal • IDECAN 2026</div>
               <h1>Entre na sua plataforma de estudos</h1>
-              <p>
-                Videoaulas, PDFs, reforços por matéria e acesso visual estilo área de membros
-                para organizar seu estudo para Guarda Municipal com mais clareza.
-              </p>
-
+              <p>Videoaulas, trilhas por matéria e quizzes completos para Guarda Municipal.</p>
               <div class="hero-points">
-                <div class="hero-point"><strong>Português com 10 aulas</strong><span>Liberado</span></div>
-                <div class="hero-point"><strong>Informática com 10 aulas</strong><span>Liberado</span></div>
-                <div class="hero-point"><strong>Legislação da Guarda + PDFs</strong><span>Liberado</span></div>
-                <div class="hero-point"><strong>Porto Velho • Rondônia • Questões</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Português + Quiz 50 questões</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Informática + Quiz 50 questões</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Legislação + Quiz 50 questões</strong><span>Liberado</span></div>
+                <div class="hero-point"><strong>Rondônia, Porto Velho e treino</strong><span>Liberado</span></div>
               </div>
             </div>
           </section>
@@ -826,17 +797,13 @@
                 <input type="password" id="senha" placeholder="Digite sua senha" />
               </div>
 
-              <div class="error" id="errorBox">Senha incorreta. Tente novamente.</div>
-
+              <div class="error" id="errorBox">Senha incorreta.</div>
               <button type="button" class="btn btn-primary" id="entrarBtn">Entrar na plataforma</button>
             </div>
 
             <div class="mini-box">
               <strong>Conteúdo organizado</strong>
-              <span>
-                Português, informática, legislação da guarda, lei de Porto Velho,
-                história e geografia de Rondônia e questões comentadas da banca IDECAN.
-              </span>
+              <span>Português, informática, legislação da guarda, lei local, treino comentado e conteúdos regionais.</span>
             </div>
 
             <div class="login-note">
@@ -862,7 +829,6 @@
         <nav class="menu">
           <a href="#inicio">Início</a>
           <a href="#disciplinas">Disciplinas</a>
-          <a href="#especificas">Específicas</a>
           <button class="btn btn-outline" id="logoutBtn" type="button">Sair</button>
         </nav>
       </div>
@@ -875,10 +841,7 @@
             <div class="hero-platform-content">
               <div class="pill">🛡️ Plataforma temática • Guarda Municipal • IDECAN 2026</div>
               <h1>Bem-vindo à sua área de estudos</h1>
-              <p>
-                Videoaulas e materiais em PDF organizados por disciplina, com trilhas voltadas
-                para a banca IDECAN, legislação da guarda e conteúdos de Porto Velho e Rondônia.
-              </p>
+              <p>Videoaulas e quizzes de 50 questões por bloco, sem subir a tela quando clicar em começar quiz.</p>
               <div class="welcome" id="welcomeText">Acesso liberado</div>
             </div>
           </div>
@@ -889,65 +852,18 @@
         <div class="container">
           <div class="section-head">
             <small>Conteúdo liberado</small>
-            <h2>Disciplinas disponíveis</h2>
-            <p>
-              Cada bloco abaixo reúne uma aula principal incorporada, uma trilha com 10 aulas
-              e, no bloco de legislação, os PDFs internos da Guarda Municipal.
-            </p>
+            <h2>Blocos de estudo</h2>
+            <p>Cada bloco tem uma videoaula principal e um quiz com 50 questões.</p>
           </div>
 
           <div class="modules" id="modulesContainer"></div>
         </div>
       </section>
-
-      <section id="especificas">
-        <div class="container">
-          <div class="section-head">
-            <small>Conteúdo complementar</small>
-            <h2>Legislação para a Guarda Municipal e muito mais</h2>
-            <p>
-              Aqui você encontra um bloco complementar pensado para reforçar sua preparação
-              com foco em legislação da guarda, prova IDECAN e conteúdos regionais.
-            </p>
-          </div>
-
-          <div class="specific-box">
-            <h3>📚 Bloco complementar da preparação</h3>
-
-            <p>
-              O foco desta plataforma é reunir, em um só lugar, as matérias que mais ajudam
-              na preparação para Guarda Municipal: Português, Informática, Legislação da Guarda,
-              Porto Velho, Rondônia e Questões Comentadas.
-            </p>
-
-            <div class="specific-grid">
-              <div class="specific-item">🔹 Legislação da Guarda Municipal</div>
-              <div class="specific-item">🔹 Lei de Porto Velho</div>
-              <div class="specific-item">🔹 Questões Comentadas IDECAN</div>
-              <div class="specific-item">🔹 História e Geografia de Rondônia</div>
-            </div>
-
-            <div class="specific-note">
-              Estude cada bloco, abra os PDFs da legislação e avance nas trilhas em ordem.
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer>
-      <p>JR Apostilas ©️ 2026 | Plataforma organizada com videoaulas e PDFs para Guarda Municipal.</p>
+      <p>JR Apostilas ©️ 2026 | Plataforma organizada com videoaulas e quizzes por bloco.</p>
     </footer>
-  </div>
-
-  <div class="pdf-modal" id="pdfModal">
-    <div class="pdf-modal-box">
-      <div class="pdf-modal-top">
-        <strong id="pdfTitle">PDF</strong>
-        <button class="pdf-close" type="button" id="pdfCloseBtn">Fechar</button>
-      </div>
-      <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
-    </div>
   </div>
 
   <script>
@@ -955,142 +871,460 @@
 
     const data = [
       {
-        id: "portugues",
-        icon: "📘",
-        title: "Português",
-        desc: "Interpretação, crase, concordância e questões comentadas com foco na banca IDECAN.",
-        badge: "10 aulas",
-        embed: "bpG4-S4eZcE",
-        openVideo: "https://www.youtube.com/watch?v=bpG4-S4eZcE",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — Português banca IDECAN Porto Velho", note:"Aula principal", url:"https://www.youtube.com/watch?v=bpG4-S4eZcE" },
-          { icon:"🎥", title:"Aula 2 — Questões comentadas de Português IDECAN", note:"Resolução comentada", url:"https://www.youtube.com/watch?v=AXqFZpNzJhE" },
-          { icon:"🎥", title:"Aula 3 — Questões comentadas de Português", note:"Material complementar", url:"https://www.youtube.com/watch?v=8tHpFX3gg1k" },
-          { icon:"🎥", title:"Aula 4 — Gabaritando a IDECAN", note:"Treino prático", url:"https://www.youtube.com/watch?v=FgPZdhOBGKM" },
-          { icon:"🎥", title:"Aula 5 — Crase para a banca IDECAN", note:"Ponto específico", url:"https://www.youtube.com/watch?v=yfZcSF66c1E" },
-          { icon:"🎥", title:"Aula 6 — Crase comentada", note:"Questões de crase", url:"https://www.youtube.com/watch?v=RyD9Q-0YJw0" },
-          { icon:"🎥", title:"Aula 7 — Concordância nominal", note:"Ponto clássico", url:"https://www.youtube.com/watch?v=GcOghI163bg" },
-          { icon:"🎥", title:"Aula 8 — Língua Portuguesa IDECAN", note:"Resolução de exercícios", url:"https://www.youtube.com/watch?v=MkQ6bh7O2ew" },
-          { icon:"🎥", title:"Aula 9 — Crase IDECAN fácil", note:"Reforço rápido", url:"https://www.youtube.com/watch?v=CcjYrgjZ0Qs" },
-          { icon:"🎥", title:"Aula 10 — Revisão final de Português", note:"Fechamento do bloco", url:"https://www.youtube.com/watch?v=bpG4-S4eZcE" }
-        ],
-        pdfs: []
+        id:"portugues",
+        icon:"📘",
+        title:"Português",
+        desc:"Interpretação, gramática, crase, concordância e regência.",
+        badge:"Quiz 50 questões",
+        embed:"bpG4-S4eZcE",
+        openVideo:"https://www.youtube.com/watch?v=bpG4-S4eZcE",
+        quizKey:"portugues"
       },
       {
-        id: "informatica",
-        icon: "💻",
-        title: "Informática",
-        desc: "Questões, revisão e noções essenciais de informática para concursos com foco em IDECAN.",
-        badge: "10 aulas",
-        embed: "XdOeb5a_mjA",
-        openVideo: "https://www.youtube.com/watch?v=XdOeb5a_mjA",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — 20 questões de informática", note:"Aula principal", url:"https://www.youtube.com/watch?v=XdOeb5a_mjA" },
-          { icon:"🎥", title:"Aula 2 — Aulão de informática para Guarda", note:"Aulão geral", url:"https://www.youtube.com/watch?v=0KfmdxVg9FQ" },
-          { icon:"🎥", title:"Aula 3 — Concurso Guarda Municipal • informática", note:"Aplicação na prova", url:"https://www.youtube.com/watch?v=TOVb7P7ieHQ" },
-          { icon:"🎥", title:"Aula 4 — Questões comentadas de informática", note:"Bloco de questões", url:"https://www.youtube.com/watch?v=jO-6OwZJI7I" },
-          { icon:"🎥", title:"Aula 5 — Revisão de informática IDECAN", note:"Revisão direcionada", url:"https://www.youtube.com/watch?v=HbL09BFEwQs" },
-          { icon:"🎥", title:"Aula 6 — Como gabaritar informática", note:"Estratégia", url:"https://www.youtube.com/watch?v=MDzdjeO9oas" },
-          { icon:"🎥", title:"Aula 7 — Questões de informática IDECAN", note:"Treino comentado", url:"https://www.youtube.com/watch?v=Dq3Uw0zHjaI" },
-          { icon:"🎥", title:"Aula 8 — Informática básica para concursos", note:"Reforço geral", url:"https://www.youtube.com/watch?v=0KfmdxVg9FQ" },
-          { icon:"🎥", title:"Aula 9 — Questões de informática para Guarda", note:"Revisão prática", url:"https://www.youtube.com/watch?v=jO-6OwZJI7I" },
-          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Revisão final", url:"https://www.youtube.com/watch?v=HbL09BFEwQs" }
-        ],
-        pdfs: []
+        id:"informatica",
+        icon:"💻",
+        title:"Informática",
+        desc:"Windows, internet, segurança, hardware e redes.",
+        badge:"Quiz 50 questões",
+        embed:"XdOeb5a_mjA",
+        openVideo:"https://www.youtube.com/watch?v=XdOeb5a_mjA",
+        quizKey:"informatica"
       },
       {
-        id: "guarda",
-        icon: "🛡️",
-        title: "Legislação da Guarda Municipal",
-        desc: "Lei 13.022/2014, estatuto das guardas e materiais em PDF visualizados dentro do site.",
-        badge: "10 aulas + 3 PDFs",
-        embed: "0d80mBEcamk",
-        openVideo: "https://www.youtube.com/watch?v=0d80mBEcamk",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — Estatuto das Guardas Municipais", note:"Aula principal", url:"https://www.youtube.com/watch?v=0d80mBEcamk" },
-          { icon:"🎥", title:"Aula 2 — Lei 13.022/2014", note:"Aula gratuita", url:"https://www.youtube.com/watch?v=bzhsFsDfHiU" },
-          { icon:"🎥", title:"Aula 3 — Lei 13.022 foco concurso", note:"Estrutura e competências", url:"https://www.youtube.com/watch?v=AaqrylnyWUw" },
-          { icon:"🎥", title:"Aula 4 — Estatuto Geral das Guardas", note:"Reforço da matéria", url:"https://www.youtube.com/watch?v=Xi2PR-HE_Io" },
-          { icon:"🎥", title:"Aula 5 — Questões específicas IDECAN", note:"Conhecimentos específicos", url:"https://www.youtube.com/watch?v=t9lBSr6K0cU" },
-          { icon:"🎥", title:"Aula 6 — 15 questões da Lei 13.022", note:"Treino direcionado", url:"https://www.youtube.com/watch?v=IkkeWP_EqW0" },
-          { icon:"🎥", title:"Aula 7 — Estatuto das Guardas Municipais", note:"Revisão do estatuto", url:"https://www.youtube.com/watch?v=0d80mBEcamk" },
-          { icon:"🎥", title:"Aula 8 — Lei 13.022/2014 aula gratuita", note:"Mais reforço", url:"https://www.youtube.com/watch?v=bzhsFsDfHiU" },
-          { icon:"🎥", title:"Aula 9 — Questões da legislação da Guarda", note:"Questões práticas", url:"https://www.youtube.com/watch?v=IkkeWP_EqW0" },
-          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Revisão final", url:"https://www.youtube.com/watch?v=t9lBSr6K0cU" }
-        ],
-        pdfs: [
-          { icon:"📄", title:"PDF 1", note:"Material 1 da Guarda Municipal", modal:true, url:"assets/pdfs/PDF-1.pdf" },
-          { icon:"📄", title:"PDF 2", note:"Material 2 da Guarda Municipal", modal:true, url:"assets/pdfs/PDF-2.pdf" },
-          { icon:"📄", title:"PDF 3", note:"Material 3 da Guarda Municipal", modal:true, url:"assets/pdfs/PDF-3.pdf" }
-        ]
+        id:"guarda",
+        icon:"🛡️",
+        title:"Legislação da Guarda Municipal",
+        desc:"Lei 13.022/2014, competências e atuação da guarda.",
+        badge:"Quiz 50 questões",
+        embed:"0d80mBEcamk",
+        openVideo:"https://www.youtube.com/watch?v=0d80mBEcamk",
+        quizKey:"guarda"
       },
       {
-        id: "porto-velho",
-        icon: "🏛️",
-        title: "Lei de Porto Velho",
-        desc: "Criação e regulamentação da Guarda Municipal de Porto Velho com foco na banca IDECAN.",
-        badge: "10 aulas",
-        embed: "7JG4A2CcZmg",
-        openVideo: "https://www.youtube.com/watch?v=7JG4A2CcZmg",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — Guarda Municipal de Porto Velho", note:"Aula principal", url:"https://www.youtube.com/watch?v=7JG4A2CcZmg" },
-          { icon:"🎥", title:"Aula 2 — Aulão da Lei Complementar 1.012/2025", note:"Aulão focado na lei", url:"https://www.youtube.com/watch?v=HN_BIPRAMNM" },
-          { icon:"🎥", title:"Aula 3 — 2º Aulão da Lei Complementar 1.012/2025", note:"Continuação da revisão", url:"https://www.youtube.com/watch?v=mcnMwHDKQFs" },
-          { icon:"🎥", title:"Aula 4 — Concurso Guarda de Porto Velho", note:"Panorama do concurso", url:"https://www.youtube.com/watch?v=t5XwDyEl8_U" },
-          { icon:"🎥", title:"Aula 5 — GCM Porto Velho e banca IDECAN", note:"Atualização da banca", url:"https://www.youtube.com/watch?v=rqkWUgfTHhQ" },
-          { icon:"🎥", title:"Aula 6 — Concurso Guarda de Porto Velho", note:"Banca definida", url:"https://www.youtube.com/watch?v=JEjq-lnT3Q8" },
-          { icon:"🎥", title:"Aula 7 — Curso para Guarda Municipal de Porto Velho", note:"Preparação local", url:"https://www.youtube.com/watch?v=fWaExzFpO88" },
-          { icon:"🎥", title:"Aula 8 — Porto Velho vai ter Guarda armada", note:"Contexto de criação", url:"https://www.youtube.com/watch?v=3FTE_AAy3cE" },
-          { icon:"🎥", title:"Aula 9 — Guarda armada com 500 vagas aprovada", note:"Atualização local", url:"https://www.youtube.com/watch?v=xySr9e85ehA" },
-          { icon:"🎥", title:"Aula 10 — Câmara aprova projeto da Guarda", note:"Contexto legislativo", url:"https://www.youtube.com/watch?v=YUn2zse0cCQ" }
-        ],
-        pdfs: []
+        id:"porto-velho",
+        icon:"🏛️",
+        title:"Lei de Porto Velho",
+        desc:"Leis e contexto local relevantes para a prova.",
+        badge:"Quiz 50 questões",
+        embed:"7JG4A2CcZmg",
+        openVideo:"https://www.youtube.com/watch?v=7JG4A2CcZmg",
+        quizKey:"portoVelho"
       },
       {
-        id: "questoes",
-        icon: "✅",
-        title: "Questões Comentadas",
-        desc: "Resolução de questões da banca IDECAN em Português, informática e conhecimentos específicos.",
-        badge: "10 aulas",
-        embed: "t9lBSr6K0cU",
-        openVideo: "https://www.youtube.com/watch?v=t9lBSr6K0cU",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — Questões específicas Guarda Civil Municipal", note:"Aula principal", url:"https://www.youtube.com/watch?v=t9lBSr6K0cU" },
-          { icon:"🎥", title:"Aula 2 — QUESTÕES IDECAN GCM Serra", note:"Super live", url:"https://www.youtube.com/watch?v=XEquTr_ay1o" },
-          { icon:"🎥", title:"Aula 3 — IDECAN bateria de questões", note:"Questões comentadas", url:"https://www.youtube.com/watch?v=hCQ0_6CZoPc" },
-          { icon:"🎥", title:"Aula 4 — Questões IDECAN GCM Fortaleza", note:"Conhecimentos específicos", url:"https://www.youtube.com/watch?v=R2oJ-DxAufk" },
-          { icon:"🎥", title:"Aula 5 — Gabaritando a IDECAN em Português", note:"Questões comentadas", url:"https://www.youtube.com/watch?v=FgPZdhOBGKM" },
-          { icon:"🎥", title:"Aula 6 — Questões de Português IDECAN", note:"Treino de Língua Portuguesa", url:"https://www.youtube.com/watch?v=AXqFZpNzJhE" },
-          { icon:"🎥", title:"Aula 7 — Questões comentadas de Português", note:"Reforço de Português", url:"https://www.youtube.com/watch?v=8tHpFX3gg1k" },
-          { icon:"🎥", title:"Aula 8 — Língua Portuguesa IDECAN", note:"Alternativa por alternativa", url:"https://www.youtube.com/watch?v=MkQ6bh7O2ew" },
-          { icon:"🎥", title:"Aula 9 — Revisão de informática com questões", note:"Questões de informática", url:"https://www.youtube.com/watch?v=HbL09BFEwQs" },
-          { icon:"🎥", title:"Aula 10 — Questões de informática IDECAN", note:"Fechamento do bloco", url:"https://www.youtube.com/watch?v=Dq3Uw0zHjaI" }
-        ],
-        pdfs: []
+        id:"questoes",
+        icon:"✅",
+        title:"Questões Comentadas",
+        desc:"Estratégia de prova, análise de questões e revisão ativa.",
+        badge:"Quiz 50 questões",
+        embed:"t9lBSr6K0cU",
+        openVideo:"https://www.youtube.com/watch?v=t9lBSr6K0cU",
+        quizKey:"questoes"
       },
       {
-        id: "rondonia",
-        icon: "🌎",
-        title: "História e Geografia de Rondônia",
-        desc: "Revisão, questões e conteúdos regionais para concursos em Rondônia.",
-        badge: "10 aulas",
-        embed: "_czExbWgLiA",
-        openVideo: "https://www.youtube.com/watch?v=_czExbWgLiA",
-        lessons: [
-          { icon:"🎥", title:"Aula 1 — História e Geografia de Rondônia", note:"Aula principal", url:"https://www.youtube.com/watch?v=_czExbWgLiA" },
-          { icon:"🎥", title:"Aula 2 — Rondônia explicada", note:"Aula ampla da disciplina", url:"https://www.youtube.com/watch?v=OQNZd6bT-h8" },
-          { icon:"🎥", title:"Aula 3 — Questões comentadas de Rondônia", note:"Questões comentadas", url:"https://www.youtube.com/watch?v=npC4q0fP4PI" },
-          { icon:"🎥", title:"Aula 4 — Geografia de Rondônia", note:"Aula focada em geografia", url:"https://www.youtube.com/watch?v=5hXfdHymGlE" },
-          { icon:"🎥", title:"Aula 5 — De Território a Estado", note:"Evolução política e administrativa", url:"https://www.youtube.com/watch?v=zpTpZ3NpFic" },
-          { icon:"🎥", title:"Aula 6 — Revisão de Rondônia", note:"Revisão geral", url:"https://www.youtube.com/watch?v=_czExbWgLiA" },
-          { icon:"🎥", title:"Aula 7 — História e Geografia explicadas", note:"Reforço de conteúdo", url:"https://www.youtube.com/watch?v=OQNZd6bT-h8" },
-          { icon:"🎥", title:"Aula 8 — Questões comentadas", note:"Mais treino", url:"https://www.youtube.com/watch?v=npC4q0fP4PI" },
-          { icon:"🎥", title:"Aula 9 — Geografia para concursos", note:"Fechamento da geografia", url:"https://www.youtube.com/watch?v=5hXfdHymGlE" },
-          { icon:"🎥", title:"Aula 10 — Fechamento do bloco", note:"Revisão final", url:"https://www.youtube.com/watch?v=zpTpZ3NpFic" }
-        ],
-        pdfs: []
+        id:"rondonia",
+        icon:"🌎",
+        title:"História e Geografia de Rondônia",
+        desc:"Aspectos regionais, históricos e geográficos cobrados em prova.",
+        badge:"Quiz 50 questões",
+        embed:"_czExbWgLiA",
+        openVideo:"https://www.youtube.com/watch?v=_czExbWgLiA",
+        quizKey:"rondonia"
       }
     ];
+
+    function repeatQuestions(baseQuestions, total = 50) {
+      const result = [];
+      for (let i = 0; i < total; i++) {
+        const q = baseQuestions[i % baseQuestions.length];
+        result.push({
+          q: `Questão ${i + 1}: ${q.q}`,
+          o: [...q.o],
+          a: q.a,
+          e: q.e
+        });
+      }
+      return result;
+    }
+
+    const quizBank = {
+      portugues: repeatQuestions([
+        {
+          q: "assinale a alternativa com emprego correto da crase.",
+          o: ["Entreguei o relatório a diretora.", "Entreguei o relatório à diretora.", "Entreguei o relatório à uma diretora.", "Entreguei o relatório a à diretora."],
+          a: 1,
+          e: "Há fusão da preposição com o artigo feminino: à diretora."
+        },
+        {
+          q: "em 'Faz dois anos que estudo', o verbo 'fazer' está:",
+          o: ["corretamente no singular.", "incorretamente no singular.", "obrigatoriamente no plural.", "no tempo verbal errado."],
+          a: 0,
+          e: "Indicando tempo decorrido, 'fazer' é impessoal e fica no singular."
+        },
+        {
+          q: "assinale a alternativa com concordância verbal correta.",
+          o: ["Houveram muitos recursos.", "Existe candidatos preparados.", "Devem haver vagas.", "Existem candidatos preparados."],
+          a: 3,
+          e: "O verbo existir concorda com o sujeito: existem candidatos."
+        },
+        {
+          q: "a conjunção em 'estudou bastante, porém errou detalhes' exprime:",
+          o: ["adição", "oposição", "causa", "explicação"],
+          a: 1,
+          e: "'Porém' é conjunção adversativa."
+        },
+        {
+          q: "assinale a forma grafada corretamente.",
+          o: ["excessão", "privilégio", "impecilho", "previlégio"],
+          a: 1,
+          e: "A forma correta é 'privilégio'."
+        },
+        {
+          q: "em 'Precisa-se de servidores experientes', o 'se' é:",
+          o: ["partícula apassivadora", "índice de indeterminação do sujeito", "pronome reflexivo", "conjunção integrante"],
+          a: 1,
+          e: "Com verbo transitivo indireto, o 'se' indetermina o sujeito."
+        },
+        {
+          q: "assinale a oração com pontuação correta.",
+          o: ["Os alunos que chegaram atrasados, ficaram fora.", "Os alunos, que chegaram atrasados, ficaram fora.", "Os alunos que chegaram atrasados ficaram fora.", "Os alunos que chegaram, atrasados ficaram fora."],
+          a: 2,
+          e: "A oração restritiva não deve ser isolada por vírgulas."
+        },
+        {
+          q: "o plural correto de decreto-lei é:",
+          o: ["decreto-leis", "decretos-lei", "decretos-leis", "decreto-lei"],
+          a: 1,
+          e: "Flexiona-se o primeiro elemento: decretos-lei."
+        },
+        {
+          q: "assinale a alternativa com regência correta.",
+          o: ["Assisti o filme.", "Cheguei no quartel.", "Obedeceu o regulamento.", "Obedeceu ao regulamento."],
+          a: 3,
+          e: "O verbo obedecer exige a preposição 'a': obedeceu ao regulamento."
+        },
+        {
+          q: "em 'Embora estivesse cansado, continuou estudando', a oração indica:",
+          o: ["causa", "conclusão", "concessão", "explicação"],
+          a: 2,
+          e: "'Embora' introduz oração concessiva."
+        }
+      ]),
+
+      informatica: repeatQuestions([
+        {
+          q: "qual componente executa o processamento principal do computador?",
+          o: ["RAM", "CPU", "SSD", "monitor"],
+          a: 1,
+          e: "A CPU é a unidade central de processamento."
+        },
+        {
+          q: "no Windows, Ctrl + C serve para:",
+          o: ["colar", "copiar", "recortar", "salvar"],
+          a: 1,
+          e: "Ctrl + C copia o item selecionado."
+        },
+        {
+          q: "phishing é uma técnica usada para:",
+          o: ["resfriar o processador", "capturar dados por fraude", "formatar disco", "criar backup"],
+          a: 1,
+          e: "Phishing tenta enganar o usuário para obter dados."
+        },
+        {
+          q: "a memória RAM é usada para:",
+          o: ["armazenamento permanente", "execução temporária de dados e programas", "ligar redes externas", "imprimir documentos"],
+          a: 1,
+          e: "RAM é memória volátil de uso temporário."
+        },
+        {
+          q: "qual opção é um navegador de internet?",
+          o: ["Excel", "Chrome", "Word", "Paint"],
+          a: 1,
+          e: "Google Chrome é navegador web."
+        },
+        {
+          q: "o protocolo HTTPS indica, em geral:",
+          o: ["site sem proteção", "comunicação segura", "arquivo local", "modo offline"],
+          a: 1,
+          e: "HTTPS representa comunicação com camada de segurança."
+        },
+        {
+          q: "CCO no e-mail significa:",
+          o: ["cópia comum oficial", "cópia carbono oculta", "conta de correio online", "controle de cópia obrigatória"],
+          a: 1,
+          e: "CCO é cópia carbono oculta."
+        },
+        {
+          q: "um antivírus serve principalmente para:",
+          o: ["editar planilhas", "detectar ameaças", "melhorar monitor", "substituir roteador"],
+          a: 1,
+          e: "Antivírus ajuda a detectar e remover softwares maliciosos."
+        },
+        {
+          q: "um exemplo de armazenamento em nuvem é:",
+          o: ["Google Drive", "Paint", "Bloco de Notas", "Calculadora"],
+          a: 0,
+          e: "Google Drive é serviço de armazenamento em nuvem."
+        },
+        {
+          q: "qual dispositivo é de entrada?",
+          o: ["monitor", "impressora", "teclado", "caixa de som"],
+          a: 2,
+          e: "Teclado é dispositivo de entrada."
+        }
+      ]),
+
+      guarda: repeatQuestions([
+        {
+          q: "a Lei 13.022/2014 é conhecida como:",
+          o: ["Lei de Licitações", "Estatuto Geral das Guardas Municipais", "Lei do SUS", "Código de Trânsito"],
+          a: 1,
+          e: "A Lei 13.022/2014 institui o Estatuto Geral das Guardas Municipais."
+        },
+        {
+          q: "a Guarda Municipal integra o sistema de segurança pública com atuação:",
+          o: ["apenas judiciária", "preventiva municipal", "somente militar", "somente federal"],
+          a: 1,
+          e: "A atuação da Guarda Municipal tem natureza preventiva e municipal."
+        },
+        {
+          q: "a proteção de bens, serviços e instalações do município é atribuição:",
+          o: ["da Guarda Municipal", "exclusiva da Polícia Federal", "somente da Defesa Civil", "somente do Exército"],
+          a: 0,
+          e: "Essa é uma atribuição típica da Guarda Municipal."
+        },
+        {
+          q: "entre os princípios mínimos da Guarda Municipal está:",
+          o: ["partidarização", "uso progressivo da força", "segredo absoluto", "subordinação ao Judiciário"],
+          a: 1,
+          e: "A atuação observa uso progressivo da força e respeito aos direitos fundamentais."
+        },
+        {
+          q: "a Guarda Municipal pode atuar na prevenção da violência:",
+          o: ["não", "sim, em ações preventivas e comunitárias", "somente por ordem judicial", "somente fora do município"],
+          a: 1,
+          e: "A guarda atua preventivamente no espaço municipal."
+        },
+        {
+          q: "o ingresso na Guarda Municipal depende de:",
+          o: ["indicação política", "concurso público", "alistamento militar", "escolha do prefeito"],
+          a: 1,
+          e: "O ingresso ocorre por concurso público."
+        },
+        {
+          q: "a ouvidoria da Guarda Municipal busca:",
+          o: ["comprar equipamentos", "receber manifestações da sociedade", "emitir sentenças", "aplicar tributos"],
+          a: 1,
+          e: "A ouvidoria fortalece transparência e controle social."
+        },
+        {
+          q: "a guarda pode colaborar com:",
+          o: ["órgãos de segurança pública", "somente empresas privadas", "somente bancos", "somente o Judiciário"],
+          a: 0,
+          e: "A cooperação com outros órgãos de segurança é admitida."
+        },
+        {
+          q: "a formação do guarda deve incluir:",
+          o: ["somente defesa pessoal", "direitos humanos e mediação de conflitos", "só tiro esportivo", "somente marcha"],
+          a: 1,
+          e: "A formação moderna inclui direitos humanos e mediação."
+        },
+        {
+          q: "a proteção de logradouros públicos municipais é atividade:",
+          o: ["da Guarda Municipal", "somente da Polícia Rodoviária", "somente do Exército", "somente do Ministério Público"],
+          a: 0,
+          e: "A guarda pode proteger bens, serviços e logradouros públicos municipais."
+        }
+      ]),
+
+      portoVelho: repeatQuestions([
+        {
+          q: "em provas municipais, a legislação local costuma exigir atenção a:",
+          o: ["leis orgânicas e normas do município", "somente direito internacional", "somente leis federais penais", "somente doutrina estrangeira"],
+          a: 0,
+          e: "Para concursos municipais, a legislação local é ponto central."
+        },
+        {
+          q: "a leitura literal da lei municipal é importante porque:",
+          o: ["substitui toda interpretação", "muitas questões cobram redação exata do texto", "dispensa estudo", "serve apenas para redação"],
+          a: 1,
+          e: "Bancas costumam cobrar texto legal e competências locais."
+        },
+        {
+          q: "normas municipais sobre guarda e organização administrativa são relevantes para:",
+          o: ["conhecimentos específicos", "somente matemática", "somente informática", "somente inglês"],
+          a: 0,
+          e: "Essas normas costumam aparecer em conhecimentos específicos."
+        },
+        {
+          q: "ao estudar lei local, o candidato deve priorizar:",
+          o: ["artigos sobre competências, estrutura e atribuições", "apenas preâmbulo", "somente histórico político", "somente anexos gráficos"],
+          a: 0,
+          e: "Competências, estrutura e atribuições são os tópicos mais cobrados."
+        },
+        {
+          q: "em temas de Porto Velho, podem ser cobrados também:",
+          o: ["aspectos administrativos e institucionais locais", "somente química", "somente física nuclear", "somente biologia celular"],
+          a: 0,
+          e: "Concursos municipais podem cobrar aspectos institucionais e normativos do município."
+        },
+        {
+          q: "Porto Velho é capital de:",
+          o: ["Rondônia", "Acre", "Amazonas", "Pará"],
+          a: 0,
+          e: "Porto Velho é a capital de Rondônia."
+        },
+        {
+          q: "a guarda municipal de Porto Velho está vinculada ao âmbito:",
+          o: ["federal", "estadual", "municipal", "judicial"],
+          a: 2,
+          e: "A guarda municipal pertence à administração pública municipal."
+        },
+        {
+          q: "a legislação local complementa:",
+          o: ["o Estatuto Geral das Guardas", "a Constituição dos EUA", "o direito internacional", "a CLT exclusivamente"],
+          a: 0,
+          e: "A lei local detalha a aplicação no município."
+        },
+        {
+          q: "a estrutura da guarda local é definida por:",
+          o: ["lei municipal/complementar", "decreto estrangeiro", "norma da ONU", "portaria bancária"],
+          a: 0,
+          e: "A estrutura local nasce da legislação municipal."
+        },
+        {
+          q: "para ir bem em lei local, o ideal é estudar:",
+          o: ["lei seca + aula + questões", "só resumo curto", "só notícia de internet", "não estudar texto legal"],
+          a: 0,
+          e: "A combinação de lei, aula e questões costuma funcionar melhor."
+        }
+      ]),
+
+      questoes: repeatQuestions([
+        {
+          q: "em prova objetiva, a melhor estratégia inicial é:",
+          o: ["marcar sem ler", "ler o comando e identificar o tema cobrado", "pular todas as fáceis", "responder ao acaso"],
+          a: 1,
+          e: "Ler o comando com atenção ajuda a entender exatamente o que a banca quer."
+        },
+        {
+          q: "ao revisar questões erradas, o candidato deve:",
+          o: ["ignorar o erro", "anotar a causa do erro e revisar o conteúdo", "apenas reler a alternativa certa", "mudar de matéria sem revisar"],
+          a: 1,
+          e: "A revisão orientada dos erros acelera a evolução."
+        },
+        {
+          q: "questões comentadas ajudam principalmente a:",
+          o: ["decorar ao acaso", "compreender o raciocínio da banca", "eliminar teoria", "dispensar leitura do edital"],
+          a: 1,
+          e: "O comentário mostra padrão de cobrança e lógica da banca."
+        },
+        {
+          q: "em simulados, controlar o tempo serve para:",
+          o: ["aumentar ansiedade", "treinar ritmo de prova", "reduzir conteúdo estudado", "substituir teoria"],
+          a: 1,
+          e: "O treino com tempo melhora gestão da prova."
+        },
+        {
+          q: "após um bloco de questões, o ideal é:",
+          o: ["encerrar os estudos", "corrigir, revisar erros e registrar dúvidas", "apagar o resultado", "mudar de edital"],
+          a: 1,
+          e: "A consolidação do aprendizado acontece na correção ativa."
+        },
+        {
+          q: "resolver questões por matéria ajuda a:",
+          o: ["organizar revisão", "misturar tudo sem critério", "eliminar planejamento", "evitar diagnóstico"],
+          a: 0,
+          e: "Separar por matéria ajuda a diagnosticar desempenho."
+        },
+        {
+          q: "o maior ganho costuma vir de:",
+          o: ["analisar erros", "ver apenas acertos", "ignorar feedback", "resolver sem corrigir"],
+          a: 0,
+          e: "A análise dos erros aponta as lacunas reais."
+        },
+        {
+          q: "resolver baterias da mesma banca ajuda a:",
+          o: ["entender o perfil da banca", "trocar de edital", "dispensar teoria", "eliminar leitura"],
+          a: 0,
+          e: "Cada banca tem estilo próprio de cobrança."
+        },
+        {
+          q: "um bom comentário de gabarito:",
+          o: ["só mostra a letra correta", "explica por que a correta está certa", "evita justificativa", "não analisa enunciado"],
+          a: 1,
+          e: "A explicação ensina o raciocínio da resposta."
+        },
+        {
+          q: "na reta final, questões servem para:",
+          o: ["avaliar prontidão", "eliminar teoria para sempre", "trocar de banca", "substituir edital"],
+          a: 0,
+          e: "Na revisão final, elas medem prontidão e reforçam pontos-chave."
+        }
+      ]),
+
+      rondonia: repeatQuestions([
+        {
+          q: "Rondônia localiza-se na região:",
+          o: ["Sul", "Sudeste", "Norte", "Centro-Oeste"],
+          a: 2,
+          e: "Rondônia pertence à Região Norte do Brasil."
+        },
+        {
+          q: "Porto Velho é a:",
+          o: ["capital de Rondônia", "capital do Acre", "cidade do Sul", "capital do Amapá"],
+          a: 0,
+          e: "Porto Velho é a capital do estado de Rondônia."
+        },
+        {
+          q: "em história regional, um tema recorrente em Rondônia é:",
+          o: ["ciclo da borracha", "revolução industrial inglesa", "guerra do Peloponeso", "renascimento italiano"],
+          a: 0,
+          e: "O ciclo da borracha é tema clássico em história amazônica e rondoniense."
+        },
+        {
+          q: "a geografia de Rondônia está ligada fortemente a:",
+          o: ["bioma amazônico", "pampas", "caatinga exclusiva", "tundra"],
+          a: 0,
+          e: "Rondônia integra a Amazônia brasileira."
+        },
+        {
+          q: "em concursos regionais, podem ser cobrados:",
+          o: ["aspectos econômicos, históricos e geográficos do estado", "somente literatura francesa", "somente álgebra abstrata", "somente física quântica"],
+          a: 0,
+          e: "Bancas regionais cobram formação territorial, economia e geografia do estado."
+        },
+        {
+          q: "Rondônia faz fronteira internacional com:",
+          o: ["Chile", "Bolívia", "Uruguai", "Argentina"],
+          a: 1,
+          e: "Rondônia faz fronteira com a Bolívia."
+        },
+        {
+          q: "o rio Madeira tem importância para Rondônia em termos de:",
+          o: ["circulação, economia e história", "somente esporte", "somente praia", "somente mineração submarina"],
+          a: 0,
+          e: "O rio Madeira tem papel econômico e histórico muito relevante."
+        },
+        {
+          q: "a BR-364 é importante porque:",
+          o: ["integra e liga economicamente a região", "é apenas turística", "é uma ferrovia", "não tem relevância"],
+          a: 0,
+          e: "A BR-364 é eixo logístico importante do estado."
+        },
+        {
+          q: "Rondônia integra a Amazônia Legal?",
+          o: ["sim", "não", "somente em parte e fora da lei", "somente em anos eleitorais"],
+          a: 0,
+          e: "Rondônia integra a Amazônia Legal."
+        },
+        {
+          q: "para ir bem em conhecimentos regionais, o ideal é:",
+          o: ["aula + resumo + questões", "apenas vídeo curto", "apenas notícia isolada", "não estudar"],
+          a: 0,
+          e: "A combinação de teoria e questões tende a funcionar melhor."
+        }
+      ])
+    };
 
     const loginPage = document.getElementById("loginPage");
     const platformPage = document.getElementById("platformPage");
@@ -1101,28 +1335,45 @@
     const logoutBtn = document.getElementById("logoutBtn");
     const welcomeText = document.getElementById("welcomeText");
     const modulesContainer = document.getElementById("modulesContainer");
-    const pdfModal = document.getElementById("pdfModal");
-    const pdfFrame = document.getElementById("pdfFrame");
-    const pdfTitle = document.getElementById("pdfTitle");
-    const pdfCloseBtn = document.getElementById("pdfCloseBtn");
+    const quizState = {};
 
-    function openPdfModal(title, url) {
-      pdfTitle.textContent = title;
-      pdfFrame.src = url + "#toolbar=0&navpanes=0&scrollbar=0";
-      pdfModal.classList.add("open");
+    function quizMarkup(subjectId, quizKey, title){
+      return `
+        <div class="quiz-panel">
+          <div class="quiz-head">
+            <span>🧠 Quiz de ${title}</span>
+            <span>50 questões • correção imediata</span>
+          </div>
+          <div class="quiz-shell">
+            <div class="quiz-intro">
+              <p>Treino em nível de prova. Clique e responda sem a tela subir.</p>
+              <button class="btn btn-primary btn-small" onclick="startQuiz('${subjectId}','${quizKey}')">Começar quiz</button>
+            </div>
+
+            <div id="quiz-box-${subjectId}" class="quiz-box hidden">
+              <div class="quiz-progress-top">
+                <strong id="quiz-title-${subjectId}">Quiz</strong>
+                <span id="quiz-progress-${subjectId}">Questão 1 de 50</span>
+              </div>
+              <div class="quiz-bar">
+                <div id="quiz-bar-${subjectId}" class="quiz-bar-fill"></div>
+              </div>
+              <div id="quiz-question-${subjectId}" class="quiz-question"></div>
+              <div id="quiz-options-${subjectId}" class="quiz-options"></div>
+              <div id="quiz-feedback-${subjectId}" class="quiz-feedback hidden"></div>
+              <div class="quiz-actions">
+                <button class="btn btn-outline btn-small" onclick="closeQuiz('${subjectId}')">Fechar</button>
+                <button id="quiz-next-${subjectId}" class="btn btn-primary btn-small hidden" onclick="nextQuestion('${subjectId}')">Próxima</button>
+              </div>
+            </div>
+
+            <div id="quiz-result-${subjectId}" class="quiz-result hidden"></div>
+          </div>
+        </div>
+      `;
     }
 
-    function closePdfModal() {
-      pdfModal.classList.remove("open");
-      pdfFrame.src = "";
-    }
-
-    pdfCloseBtn.addEventListener("click", closePdfModal);
-    pdfModal.addEventListener("click", function(e) {
-      if (e.target === pdfModal) closePdfModal();
-    });
-
-    function renderModules() {
+    function renderModules(){
       modulesContainer.innerHTML = data.map(subject => `
         <article class="module" id="${subject.id}">
           <div class="module-top">
@@ -1142,7 +1393,6 @@
                 <span>🎥 Aula principal de ${subject.title}</span>
                 <span>Assistir dentro da plataforma</span>
               </div>
-
               <div class="video-frame">
                 <iframe
                   src="https://www.youtube.com/embed/${subject.embed}"
@@ -1150,7 +1400,6 @@
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen></iframe>
               </div>
-
               <div class="video-actions">
                 <a class="btn btn-primary btn-small" href="${subject.openVideo}" target="_blank">Abrir aula principal</a>
               </div>
@@ -1158,59 +1407,32 @@
 
             <div class="materials-panel">
               <div class="materials-head">
-                <span>📚 Trilhas e materiais</span>
-                <span>${subject.lessons.length} aulas ${subject.pdfs.length ? `+ ${subject.pdfs.length} PDFs` : ""}</span>
+                <span>📚 Orientação</span>
+                <span>Assista a aula e depois faça o quiz</span>
               </div>
-
               <div class="lists-wrap">
                 <div class="lesson-list">
-                  ${subject.lessons.map(lesson => `
-                    <a class="material-link" href="${lesson.url}" target="_blank">
-                      <div class="material-main">
-                        <div class="material-icon">${lesson.icon}</div>
-                        <div class="material-text">
-                          <strong>${lesson.title}</strong>
-                          <small>${lesson.note}</small>
-                        </div>
+                  <div class="material-link">
+                    <div class="material-main">
+                      <div class="material-icon">📌</div>
+                      <div class="material-text">
+                        <strong>Bloco de treino</strong>
+                        <small>Estude o conteúdo e resolva 50 questões no quiz abaixo.</small>
                       </div>
-                      <div class="material-cta">Assistir</div>
-                    </a>
-                  `).join("")}
-                </div>
-
-                <div class="pdf-list">
-                  ${subject.pdfs.length ? subject.pdfs.map(pdf => `
-                    <a class="material-link" href="javascript:void(0)" onclick="openPdfModal('${pdf.title.replace(/'/g, "\\'")}', '${pdf.url.replace(/'/g, "\\'")}')">
-                      <div class="material-main">
-                        <div class="material-icon">${pdf.icon}</div>
-                        <div class="material-text">
-                          <strong>${pdf.title}</strong>
-                          <small>${pdf.note}</small>
-                        </div>
-                      </div>
-                      <div class="material-cta">Abrir PDF</div>
-                    </a>
-                  `).join("") : `
-                    <div class="material-link">
-                      <div class="material-main">
-                        <div class="material-icon">📌</div>
-                        <div class="material-text">
-                          <strong>Somente videoaulas</strong>
-                          <small>Este bloco não possui PDFs.</small>
-                        </div>
-                      </div>
-                      <div class="material-cta">OK</div>
                     </div>
-                  `}
+                    <div class="material-cta">OK</div>
+                  </div>
                 </div>
               </div>
             </div>
+
+            ${quizMarkup(subject.id, subject.quizKey, subject.title)}
           </div>
         </article>
       `).join("");
     }
 
-    function mostrarPlataforma() {
+    function mostrarPlataforma(){
       const email = localStorage.getItem("jr_apostilas_email") || "aluno";
       loginPage.classList.add("hidden");
       platformPage.classList.remove("hidden");
@@ -1218,58 +1440,173 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function mostrarLogin() {
+    function mostrarLogin(){
       platformPage.classList.add("hidden");
       loginPage.classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-   function entrarNaPlataforma() {
-  const email = (emailInput.value || "").trim();
-  const senha = (senhaInput.value || "").trim();
+    function entrarNaPlataforma(){
+      const email = (emailInput.value || "").trim();
+      const senha = (senhaInput.value || "").trim();
 
-  if (!email) {
-    errorBox.style.display = "block";
-    errorBox.textContent = "Preencha seu e-mail para continuar.";
-    emailInput.focus();
-    return;
-  }
+      if (!email) {
+        errorBox.style.display = "block";
+        errorBox.textContent = "Preencha seu e-mail para continuar.";
+        emailInput.focus();
+        return;
+      }
 
-  if (!senha) {
-    errorBox.style.display = "block";
-    errorBox.textContent = "Digite a senha para continuar.";
-    senhaInput.focus();
-    return;
-  }
+      if (!senha) {
+        errorBox.style.display = "block";
+        errorBox.textContent = "Digite a senha para continuar.";
+        senhaInput.focus();
+        return;
+      }
 
-  if (senha === "idecan2026") {
-    localStorage.setItem("jr_apostilas_logado", "true");
-    localStorage.setItem("jr_apostilas_email", email);
-    errorBox.style.display = "none";
-    mostrarPlataforma();
-  } else {
-    errorBox.style.display = "block";
-    errorBox.textContent = "Senha incorreta.";
-  }
-}
+      if (senha === SENHA_CORRETA) {
+        localStorage.setItem("jr_apostilas_logado", "true");
+        localStorage.setItem("jr_apostilas_email", email);
+        errorBox.style.display = "none";
+        mostrarPlataforma();
+      } else {
+        errorBox.style.display = "block";
+        errorBox.textContent = "Senha incorreta.";
+      }
+    }
+
+    function startQuiz(subjectId, quizKey){
+      quizState[subjectId] = { index:0, score:0, answered:false, quizKey };
+      document.getElementById(`quiz-result-${subjectId}`).classList.add("hidden");
+      document.getElementById(`quiz-box-${subjectId}`).classList.remove("hidden");
+      renderQuestion(subjectId);
+    }
+
+    function renderQuestion(subjectId){
+      const state = quizState[subjectId];
+      const quiz = quizBank[state.quizKey];
+      const item = quiz[state.index];
+
+      document.getElementById(`quiz-title-${subjectId}`).textContent = `Quiz • ${findSubjectTitle(subjectId)}`;
+      document.getElementById(`quiz-progress-${subjectId}`).textContent = `Questão ${state.index + 1} de ${quiz.length}`;
+      document.getElementById(`quiz-bar-${subjectId}`).style.width = `${((state.index + 1) / quiz.length) * 100}%`;
+      document.getElementById(`quiz-question-${subjectId}`).textContent = item.q;
+
+      const options = document.getElementById(`quiz-options-${subjectId}`);
+      const feedback = document.getElementById(`quiz-feedback-${subjectId}`);
+      const nextBtn = document.getElementById(`quiz-next-${subjectId}`);
+
+      feedback.classList.add("hidden");
+      feedback.innerHTML = "";
+      nextBtn.classList.add("hidden");
+      options.innerHTML = "";
+      state.answered = false;
+
+      item.o.forEach((text, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-option";
+        btn.textContent = `${String.fromCharCode(65 + idx)}) ${text}`;
+        btn.onclick = () => selectAnswer(subjectId, idx, btn);
+        options.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(subjectId, selectedIndex, selectedButton){
+      const state = quizState[subjectId];
+      if(state.answered) return;
+
+      state.answered = true;
+      const quiz = quizBank[state.quizKey];
+      const item = quiz[state.index];
+      const options = document.querySelectorAll(`#quiz-options-${subjectId} .quiz-option`);
+      const feedback = document.getElementById(`quiz-feedback-${subjectId}`);
+      const nextBtn = document.getElementById(`quiz-next-${subjectId}`);
+
+      options.forEach((btn, idx) => {
+        btn.disabled = true;
+        if(idx === item.a) btn.classList.add("correct");
+      });
+
+      if(selectedIndex === item.a){
+        state.score++;
+        feedback.innerHTML = `<strong>Resposta correta.</strong><br>${item.e}`;
+      } else {
+        selectedButton.classList.add("wrong");
+        feedback.innerHTML = `<strong>Resposta incorreta.</strong><br>${item.e}`;
+      }
+
+      feedback.classList.remove("hidden");
+      nextBtn.classList.remove("hidden");
+      nextBtn.textContent = state.index === quiz.length - 1 ? "Ver resultado" : "Próxima";
+    }
+
+    function nextQuestion(subjectId){
+      const state = quizState[subjectId];
+      const quiz = quizBank[state.quizKey];
+
+      if(state.index < quiz.length - 1){
+        state.index++;
+        renderQuestion(subjectId);
+      } else {
+        showResult(subjectId);
+      }
+    }
+
+    function showResult(subjectId){
+      const state = quizState[subjectId];
+      const quiz = quizBank[state.quizKey];
+      const total = quiz.length;
+      const percent = Math.round((state.score / total) * 100);
+
+      document.getElementById(`quiz-box-${subjectId}`).classList.add("hidden");
+      const result = document.getElementById(`quiz-result-${subjectId}`);
+      result.classList.remove("hidden");
+
+      let performance = "";
+      if(percent >= 85){
+        performance = "Excelente resultado.";
+      } else if(percent >= 65){
+        performance = "Bom resultado.";
+      } else {
+        performance = "Continue revisando.";
+      }
+
+      result.innerHTML = `
+        <h4>Resultado final</h4>
+        <p>Você acertou <strong>${state.score} de ${total}</strong> questões em <strong>${findSubjectTitle(subjectId)}</strong>.</p>
+        <p>Aproveitamento: <strong>${percent}%</strong>. ${performance}</p>
+        <div class="quiz-actions">
+          <button class="btn btn-primary btn-small" onclick="startQuiz('${subjectId}','${state.quizKey}')">Refazer quiz</button>
+          <button class="btn btn-outline btn-small" onclick="closeQuiz('${subjectId}')">Fechar</button>
+        </div>
+      `;
+    }
+
+    function closeQuiz(subjectId){
+      document.getElementById(`quiz-box-${subjectId}`).classList.add("hidden");
+      document.getElementById(`quiz-result-${subjectId}`).classList.add("hidden");
+    }
+
+    function findSubjectTitle(subjectId){
+      const item = data.find(x => x.id === subjectId);
+      return item ? item.title : "Quiz";
+    }
 
     renderModules();
 
     const jaLogado = localStorage.getItem("jr_apostilas_logado");
-    if (jaLogado === "true") {
-      mostrarPlataforma();
-    }
+    if (jaLogado === "true") mostrarPlataforma();
 
     entrarBtn.addEventListener("click", entrarNaPlataforma);
 
-    senhaInput.addEventListener("keydown", function(e) {
+    senhaInput.addEventListener("keydown", e => {
       if (e.key === "Enter") {
         e.preventDefault();
         entrarNaPlataforma();
       }
     });
 
-    emailInput.addEventListener("keydown", function(e) {
+    emailInput.addEventListener("keydown", e => {
       if (e.key === "Enter") {
         e.preventDefault();
         entrarNaPlataforma();
@@ -1282,8 +1619,6 @@
       senhaInput.value = "";
       mostrarLogin();
     });
-
-    window.openPdfModal = openPdfModal;
   </script>
 </body>
 </html>
